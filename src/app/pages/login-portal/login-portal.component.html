@@ -1,0 +1,52 @@
+<main>
+    <div class="login-main">
+        <div class="blur-layer">
+
+        </div>
+        <div class="login-card-container">
+            <div class="left-image-holder">
+                <div class="logo-container">
+                    <img src="../../../assets/saavithri_logo.png" alt="Saavithri_Logo">
+                </div>
+            </div>
+            <div class="right-form-holder">
+                <div class="portal-header">
+                    Staff Portal
+                </div>
+                <div class="svg-holder">
+                    <div class="svg">
+                        <img src="../../../assets/staff.gif" alt="">
+                    </div>
+                </div>
+                <div class="form-holder">
+                    <div class="input-container">
+                        <div class="icon-holder">
+                            <img src="../../../assets/user-icon.svg" alt="user">
+                        </div>
+                        <div class="input">
+                            <input type="text" name="username" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div class="icon-holder">
+                            <img src="../../../assets/password-icon.svg" alt="pass">
+                        </div>
+                        <div class="input">
+                            <input type="text" name="username" placeholder="Enter password">
+                        </div>
+                    </div>
+
+                    <div [routerLink]="'/dashboard/home'" class="login-btn-holder">
+                        <span class="login-btn">
+                            Login
+                        </span>
+                    </div>
+
+                    <div class="helper-link">
+                        <p>Forgot Password?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
