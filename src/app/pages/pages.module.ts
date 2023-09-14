@@ -8,7 +8,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
-
+import {NgxPrintModule} from 'ngx-print';
 
 import { PageHeaderComponent } from '../components/page-header/page-header.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -17,7 +17,10 @@ import { ManageWebsiteComponent } from './manage-website/manage-website.componen
 import {MatMenuModule} from '@angular/material/menu';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ComponentsModule } from '../components/components.module';
-
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     LoginPortalComponent,
@@ -37,13 +40,23 @@ import { ComponentsModule } from '../components/components.module';
     CdkAccordionModule,
     PagesRoutingModule,
     MatMenuModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxPrintModule
    
   ],
   exports: [
     LoginPortalComponent,
     PagesRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxPrintModule
   ]
 })
 export class PagesModule { 
