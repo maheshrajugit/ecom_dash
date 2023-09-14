@@ -43,12 +43,12 @@ export class DashHomeComponent {
 
   public ManagenavItems: any = [
     {
-      icon: '../assets/home-icon',
+      icon: '../assets/inventory-icon',
       title:"Inventory Management",
       to:'inventory'
     },
     {
-      icon: '../assets/w-management-icon',
+      icon: '../assets/sales-icon',
       title:"Orders / Sales",
       to:'sitemanagement',
       childs:[
@@ -61,12 +61,12 @@ export class DashHomeComponent {
       ]
     },
     {
-      icon: '../assets/users-icon',
+      icon: '../assets/invoice-icon',
       title:"Invoices",
       to:'users',
     },
     {
-      icon: '../assets/w-management-icon',
+      icon: '../assets/logistics-icon',
       title:"Logistics / Tracking",
       to:'sitemanagement',
       childs:[
@@ -79,22 +79,27 @@ export class DashHomeComponent {
       ]
     },
     {
-      icon: '../assets/users-icon',
+      icon: '../assets/v-call-icon',
       title:"Video Appointments",
       to:'users',
     },
     {
-      icon: '../assets/users-icon',
+      icon: '../assets/reels-icon',
       title:"Reels Content",
-      to:'users',
+      to:'reels',
     },
     {
-      icon: '../assets/w-management-icon',
+      icon: '../assets/discount-icon',
       title:"Discount Coupons",
-      to:'sitemanagement',
+      to:'discounts',
     },
     {
-      icon: '../assets/users-icon',
+      icon: '../assets/ewallet-icon',
+      title:"e-Wallet coupons",
+      to:'ewallets',
+    },
+    {
+      icon: '../assets/referral-icon',
       title:"Referral Program",
       to:'users',
     },
@@ -103,36 +108,28 @@ export class DashHomeComponent {
 
   public ClientnavItems: any = [
     {
-      icon: '../assets/home-icon',
+      icon: '../assets/support-icon',
       title:"Support",
       to:'home'
     },
     {
-      icon: '../assets/w-management-icon',
+      icon: '../assets/reviews-icon',
       title:"Reviews Management",
-      to:'sitemanagement',
-      childs:[
-       
-        {title:"banner ads",to:"banners"},
-        {title:"shopping categories",to:"categories"},
-        {title:"collections",to:"collections"},
-        {title:"Filters",to:"filters"},
-        {title:"Pages",to:"pages"},
-      ]
+      to:'reviews',
     },
     {
-      icon: '../assets/users-icon',
+      icon: '../assets/email-icon',
       title:"Send Email",
-      to:'users',
+      to:'email',
       childs:[
         {title:"Staff",to:"staff"},
         {title:"Customers",to:"customers"}
       ]
     },
     {
-      icon: '../assets/w-management-icon',
+      icon: '../assets/whatsapp-icon',
       title:"Send WhatsApp Updates",
-      to:'sitemanagement',
+      to:'whatsapp',
       childs:[
        
         {title:"banner ads",to:"banners"},
@@ -145,7 +142,7 @@ export class DashHomeComponent {
     {
       icon: '../assets/transaction-icon',
       title:"Transactions",
-      to:'users',
+      to:'transactions',
       childs:[
         {title:"Staff",to:"staff"},
         {title:"Customers",to:"customers"}
@@ -157,7 +154,7 @@ export class DashHomeComponent {
     {
       icon: '../assets/help-icon',
       title:"Help",
-      to:'home'
+      to:'help'
     },
     
     {
