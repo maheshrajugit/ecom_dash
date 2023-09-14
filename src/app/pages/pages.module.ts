@@ -16,6 +16,7 @@ import { InventoryPageComponent } from './inventory-page/inventory-page.componen
 import { ManageWebsiteComponent } from './manage-website/manage-website.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -30,16 +31,19 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
   imports: [
     CommonModule,
     MatButtonModule,
+    CommonModule,
     MatIconModule,
     MatSidenavModule,
     CdkAccordionModule,
     PagesRoutingModule,
     MatMenuModule,
+    ComponentsModule
    
   ],
   exports: [
     LoginPortalComponent,
-    PagesRoutingModule
+    PagesRoutingModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { 

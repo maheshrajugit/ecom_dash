@@ -1,0 +1,67 @@
+div.overview-main {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem;
+  > div.stats-analytics {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    > div.col-2-container {
+      width: 60%;
+      //   border: 1px solid rgba(0, 0, 0, 0.3);
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      border-radius: 0.5rem;
+      
+      > div.sales-revenue-chart {
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem;
+        color: #180630;
+        box-sizing: border-box;
+        > div.sub-header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          > div.title {
+            > h3 {
+              margin: 0;
+              
+              font-family: "Sen", sans-serif;
+              color: #180630;
+              font-weight: 600;
+            }
+          }
+          > div.right {
+            > div.select-btn-container {
+            }
+          }
+        }
+      }
+    }
+
+    > div.col-1-container {
+      width: 33%;
+      //   border: 1px solid rgba(0, 0, 0, 0.3);
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      div.top-categories {
+        padding: 1rem;
+        > div.sub-header {
+          > div.title {
+            > h3 {
+                margin: 0;
+                
+                font-family: "Sen", sans-serif;
+              color: #180630;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
