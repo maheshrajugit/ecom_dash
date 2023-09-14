@@ -23,6 +23,7 @@ export class HorBarGraphComponent {
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: false,
     indexAxis: 'y',
+    
     elements: {
       
       bar: {
