@@ -14,7 +14,7 @@ export class DashHomeComponent {
   public DashnavItems: any = [
     {
       icon: '../assets/home-icon',
-      title:"dashboard",
+      title:"overview stats",
       to:'home'
     },
     {
