@@ -1,5 +1,5 @@
 <mat-drawer-container class="dashboard-container" autosize>
-  <mat-drawer #drawer class="dashboard-sidenav" mode="side">
+  <mat-drawer #drawer class="dashboard-sidenav" opened="true" mode="side">
     <div class="side-nav-container">
       <div class="top-header">
         <div class="logo-container">
@@ -7,34 +7,294 @@
         </div>
       </div>
     </div>
-    <div class="nav-items-container">
-      <div *ngFor="let nav of navItem" class="nav-item">
-        <div class="nav-tile">
-          <div class="icon-container" >
-            <svg
-              width="27"
-              height="24"
-              viewBox="0 0 27 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M22.4645 8.07188L26.6446 11.8922C27.1496 12.3604 27.0055 12.7213 26.3205 12.7213H23.1852V22.7027C23.1852 23.3877 22.6086 24 21.9237 24H16.4821V17.0086C16.4821 16.3236 15.8698 15.7113 15.1848 15.7113H11.7612C11.0762 15.7113 10.4639 16.3236 10.4639 17.0086V24H5.02231C4.33735 24 3.72504 23.3877 3.72504 22.7027V12.7213H0.625439C-0.0595175 12.7213 -0.203658 12.3604 0.301411 11.8922L12.5176 0.793351C13.0227 0.325182 13.8875 0.325182 14.4272 0.793351L17.2016 3.27949V1.29727C17.2016 0.61231 17.8139 0 18.4989 0H21.2018C21.8868 0 22.4633 0.61231 22.4633 1.29727L22.4645 8.07188Z"
-                fill="#DABEF"
-              />
-            </svg>
+    <div class="all-nav-items">
+      <div class="nav-items-container">
+        <h6>Dashboard</h6>
+        <div *ngFor="let nav of DashnavItems" class="panel">
+          
+          <div
+            (click)="select_nav_item(nav.title, nav.to)"
+            [ngClass]="selected_nav == nav.title ? 'nav-item active' : 'nav-item'"
+          >
+            <div class="nav-tile">
+              <div class="icon-container">
+                <img
+                  [src]="
+                    selected_nav == nav.title
+                      ? nav.icon + '-active.svg'
+                      : nav.icon + '.svg'
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="nav-title">
+                {{ nav.title }}
+              </div>
+            </div>
+            <div *ngIf="nav.childs != undefined" class="expand-icon">
+              <svg
+                width="9"
+                height="16"
+                viewBox="0 0 9 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.772125 1.2457L7.50988 8.04154L0.714045 14.7788C0.525645 14.9653 0.524685 15.2694 0.711165 15.4575C0.897645 15.6457 1.20172 15.6469 1.38964 15.4604L8.45717 8.45386C8.54549 8.36626 8.59228 8.25346 8.59852 8.13898C8.60044 8.10562 8.59829 8.07226 8.59349 8.03938C8.59541 8.02642 8.59852 8.01394 8.59876 8.00098C8.60572 7.87042 8.55989 7.73722 8.46053 7.63738L1.45348 0.570098C1.267 0.381698 0.963165 0.380497 0.774765 0.567217C0.586365 0.753937 0.585405 1.05778 0.772125 1.2457Z"
+                />
+              </svg>
+            </div>
           </div>
-          <div class="nav-title">
-            {{ nav.title }}
+          <div
+            *ngIf="nav.childs != undefined"
+            [ngClass]="
+              selected_nav == nav.title
+                ? 'child-nav-holder active'
+                : 'child-nav-holder'
+            "
+          >
+            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+              {{ child.title }}
+            </div>
           </div>
         </div>
       </div>
+  
+      <div class="nav-items-container">
+        <h6>Manage</h6>
+        <div *ngFor="let nav of ManagenavItems" class="panel">
+          
+          <div
+            (click)="select_nav_item(nav.title, nav.to)"
+            [ngClass]="selected_nav == nav.title ? 'nav-item active' : 'nav-item'"
+          >
+            <div class="nav-tile">
+              <div class="icon-container">
+                <img
+                  [src]="
+                    selected_nav == nav.title
+                      ? nav.icon + '-active.svg'
+                      : nav.icon + '.svg'
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="nav-title">
+                {{ nav.title }}
+              </div>
+            </div>
+            <div *ngIf="nav.childs != undefined" class="expand-icon">
+              <svg
+                width="9"
+                height="16"
+                viewBox="0 0 9 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.772125 1.2457L7.50988 8.04154L0.714045 14.7788C0.525645 14.9653 0.524685 15.2694 0.711165 15.4575C0.897645 15.6457 1.20172 15.6469 1.38964 15.4604L8.45717 8.45386C8.54549 8.36626 8.59228 8.25346 8.59852 8.13898C8.60044 8.10562 8.59829 8.07226 8.59349 8.03938C8.59541 8.02642 8.59852 8.01394 8.59876 8.00098C8.60572 7.87042 8.55989 7.73722 8.46053 7.63738L1.45348 0.570098C1.267 0.381698 0.963165 0.380497 0.774765 0.567217C0.586365 0.753937 0.585405 1.05778 0.772125 1.2457Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            *ngIf="nav.childs != undefined"
+            [ngClass]="
+              selected_nav == nav.title
+                ? 'child-nav-holder active'
+                : 'child-nav-holder'
+            "
+          >
+            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+              {{ child.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-items-container">
+        <h6>Client</h6>
+        <div *ngFor="let nav of ClientnavItems" class="panel">
+          
+          <div
+            (click)="select_nav_item(nav.title, nav.to)"
+            [ngClass]="selected_nav == nav.title ? 'nav-item active' : 'nav-item'"
+          >
+            <div class="nav-tile">
+              <div class="icon-container">
+                <img
+                  [src]="
+                    selected_nav == nav.title
+                      ? nav.icon + '-active.svg'
+                      : nav.icon + '.svg'
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="nav-title">
+                {{ nav.title }}
+              </div>
+            </div>
+            <div *ngIf="nav.childs != undefined" class="expand-icon">
+              <svg
+                width="9"
+                height="16"
+                viewBox="0 0 9 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.772125 1.2457L7.50988 8.04154L0.714045 14.7788C0.525645 14.9653 0.524685 15.2694 0.711165 15.4575C0.897645 15.6457 1.20172 15.6469 1.38964 15.4604L8.45717 8.45386C8.54549 8.36626 8.59228 8.25346 8.59852 8.13898C8.60044 8.10562 8.59829 8.07226 8.59349 8.03938C8.59541 8.02642 8.59852 8.01394 8.59876 8.00098C8.60572 7.87042 8.55989 7.73722 8.46053 7.63738L1.45348 0.570098C1.267 0.381698 0.963165 0.380497 0.774765 0.567217C0.586365 0.753937 0.585405 1.05778 0.772125 1.2457Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            *ngIf="nav.childs != undefined"
+            [ngClass]="
+              selected_nav == nav.title
+                ? 'child-nav-holder active'
+                : 'child-nav-holder'
+            "
+          >
+            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+              {{ child.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-items-container">
+        <h6>Account</h6>
+        <div *ngFor="let nav of AccountnavItems" class="panel">
+          
+          <div
+            (click)="select_nav_item(nav.title, nav.to)"
+            [ngClass]="selected_nav == nav.title ? 'nav-item active' : 'nav-item'"
+          >
+            <div class="nav-tile">
+              <div class="icon-container">
+                <img
+                  [src]="
+                    selected_nav == nav.title
+                      ? nav.icon + '-active.svg'
+                      : nav.icon + '.svg'
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="nav-title">
+                {{ nav.title }}
+              </div>
+            </div>
+            <div *ngIf="nav.childs != undefined" class="expand-icon">
+              <svg
+                width="9"
+                height="16"
+                viewBox="0 0 9 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.772125 1.2457L7.50988 8.04154L0.714045 14.7788C0.525645 14.9653 0.524685 15.2694 0.711165 15.4575C0.897645 15.6457 1.20172 15.6469 1.38964 15.4604L8.45717 8.45386C8.54549 8.36626 8.59228 8.25346 8.59852 8.13898C8.60044 8.10562 8.59829 8.07226 8.59349 8.03938C8.59541 8.02642 8.59852 8.01394 8.59876 8.00098C8.60572 7.87042 8.55989 7.73722 8.46053 7.63738L1.45348 0.570098C1.267 0.381698 0.963165 0.380497 0.774765 0.567217C0.586365 0.753937 0.585405 1.05778 0.772125 1.2457Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            *ngIf="nav.childs != undefined"
+            [ngClass]="
+              selected_nav == nav.title
+                ? 'child-nav-holder active'
+                : 'child-nav-holder'
+            "
+          >
+            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+              {{ child.title }}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </mat-drawer>
 
   <div class="dashboard-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
+    <div class="page-header">
+      <div class="menu-toggle-container">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <img src="../../../assets/menu-icon.svg" alt="=" />
+        </button>
+      </div>
+
+      <div class="header-items-container">
+        <div class="page-title">
+          <h3>Dashboard / Overview</h3>
+        </div>
+        <div class="top-nav-items">
+          <div
+            [ngClass]="
+              showSearch
+                ? 'search-bar-container'
+                : 'search-bar-container inactive'
+            "
+          >
+            <div class="search-input">
+              <input type="text" placeholder="Search any product" />
+            </div>
+            <div (click)="click_search()" class="search-btn">
+              <div class="icon">
+                <img src="../assets/search.svg" alt="search" />
+              </div>
+            </div>
+          </div>
+          <div class="nav-icon">
+            <div class="icon">
+              <img src="../assets/messages-off.svg" alt="alerts" />
+            </div>
+          </div>
+          <div class="nav-icon">
+            <div class="icon">
+              <img src="../assets/notification-icon.svg" alt="notifications" />
+            </div>
+          </div>
+          <div mat-button [matMenuTriggerFor]="menu" class="user-profile-holder">
+            <div class="avatar-holder">
+              <img src="../assets/avatar.svg" alt="Avatar" />
+            </div>
+            <div class="toggle-icon">
+              <div >
+                <img src="../assets/down-arrow.svg" alt="v" />
+              </div>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>My Profile</button>
+                <button mat-menu-item>Log Out</button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-items">
+      <main>
+        
+        <!-- ========Overview========== -->
+        <section *ngIf="selected_nav == 'dashboard'" class="overview-main">
+          <app-overview></app-overview>
+        </section>
+
+        <!-- ========Site Management========== -->
+        <section
+          *ngIf="selected_nav == 'website management'"
+          class="overview-main"
+        >
+          <app-manage-website></app-manage-website>
+        </section>
+
+        <!-- ========Inventory========== -->
+        <section *ngIf="selected_nav == 'manage users'" class="overview-main">
+          <app-manage-users></app-manage-users>
+        </section>
+      </main>
+    </div>
   </div>
 </mat-drawer-container>

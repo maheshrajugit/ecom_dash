@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:'',pathMatch:'full', redirectTo:'login'},
   {path:'login',pathMatch:'full', component:LoginPortalComponent},
   { path: 'dashboard', loadChildren: () => PagesModule }
+ 
 ];
 
 @NgModule({
