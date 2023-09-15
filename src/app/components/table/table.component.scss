@@ -1,0 +1,114 @@
+div.table-container {
+  > div.table-main {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    color: #180630;
+    > div.sub-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      > div.title {
+        > h3 {
+          margin: 0;
+
+          font-family: "Sen", sans-serif;
+          color: #180630;
+          font-weight: 600;
+        }
+      }
+      > div.right {
+        > div.select-btn-container {
+          color:#6E48AA;
+          font-size: .75rem;
+          font-weight: 600;
+          cursor: pointer;
+          font-family: 'Sen',sans-serif;
+
+        }
+        > div.select-btn-container:hover {
+          color:#6E48AA;
+          font-size: .75rem;
+          text-decoration: underline;
+          font-weight: 600;
+          font-family: 'Sen',sans-serif;
+
+        }
+      }
+    }
+
+    div.table-body {
+      width: 100%;
+      box-sizing: border-box;
+      > table {
+        width: 100%;
+        box-sizing: border-box;
+        > tbody {
+          > tr {
+            > th {
+              padding: 0.5rem;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+              text-align: left;
+            }
+          }
+          > tr {
+            > td {
+              border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+              padding: 0.5rem;
+              .product-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                span {
+                  img {
+                    width: 36px;
+                    border-radius: 4px;
+                    height: 48px;
+                    margin-right: 0.5rem;
+                  }
+                  display: flex;
+                  flex-direction: column;
+                  span {
+                    font-weight: 500;
+                  }
+                  span.sku {
+                    font-weight: 300;
+                    font-size: 0.65rem;
+                  }
+                }
+              }
+
+              .status {
+                &.fulfilled {
+                  color: #009396;
+                }
+              }
+
+              .date {
+                font-family: 'Sen',sans-serif;
+                font-weight: 500;
+                  font-size: .7rem;
+              }
+
+            }
+
+          }
+
+          > tr:hover {
+            cursor: pointer;
+            background-color: rgba(218, 190, 255, 0.47);
+          }
+          > tr:nth-child(1):hover {
+            cursor: pointer;
+            background-color: #edeaff;
+          }
+        }
+      }
+    }
+  }
+  > div.table-footer {
+    > mat-paginator {
+    }
+  }
+}

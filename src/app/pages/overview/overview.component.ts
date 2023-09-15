@@ -44,13 +44,13 @@ export class OverviewComponent {
   {
     console.log("print");
     
-    let main = document.getElementsByClassName("overview-main")[0].innerHTML;
-    console.log(main);
-    const originalContents = document.body.innerHTML;
+    // let main = document.getElementsByClassName("overview-main")[0].innerHTML;
+    // console.log(main);
+    // const originalContents = document.body.innerHTML;
 
-  document.body.innerHTML = main;
+  // document.body.innerHTML = main;
   window.print();
-  document.body.innerHTML = originalContents;
+  // document.body.innerHTML = originalContents;
   window.location.reload();
     
   }

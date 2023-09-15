@@ -45,7 +45,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    NgxPrintModule
+    
    
   ],
   exports: [
@@ -55,8 +55,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule,
-    NgxPrintModule
+    MatFormFieldModule
   ]
 })
 export class PagesModule { 

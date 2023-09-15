@@ -2,6 +2,7 @@ div.overview-main {
   padding: 1.25rem;
   width: 100%;
   box-sizing: border-box;
+  background-color: #EDEAFF;
   > div.overview-container {
     display: flex;
     flex-direction: row;
@@ -65,15 +66,16 @@ div.overview-main {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding:.25rem .5rem;
+        padding:.5rem .5rem;
         border-radius: .5rem;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
         > img {
           width: 20px;
           height: 20px;
         }
         > span {
           font-family: "Sen", sans-serif;
-
+           padding-left: .25rem;
           color: #ffffff;
         }
       }
@@ -87,7 +89,7 @@ div.overview-main {
     justify-content: space-between;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 1);
-    margin: 1.5rem 1.65rem;
+    margin: 1.5rem 1rem;
     border-radius: 0.5rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     > div.sales-stat-card {
@@ -155,6 +157,7 @@ div.overview-main {
             outline: none;
             color:#fff;
             border-bottom:1px solid #ffffffab;
+            
             > option {
                 color:#180630;
                 padding:.5rem;
@@ -191,6 +194,7 @@ div.overview-main {
           flex-direction: row;
           align-items: center;
           background-color: rgba(0, 156, 65, 1);
+          background-color: #009396;
           margin: 0.5rem;
           border-radius: 16px;
           padding: 0.125rem 0.5rem;
@@ -215,7 +219,11 @@ div.overview-main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+
+    >div {
+        margin:1rem;
+    }
 
     > div.col-2-container {
       width: 60%;

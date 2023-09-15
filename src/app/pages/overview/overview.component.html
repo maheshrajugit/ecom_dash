@@ -16,7 +16,7 @@
       </div>
       <button  styleSheetFile="./overview.component.scss" (click)="printPage()" class="refresh save">
         <img src="../../../assets/save-icon.svg" alt="save-icon" />
-        <span>Save</span>
+        <span>Print</span>
       </button>
     </div>
   </div>
@@ -35,14 +35,7 @@
         </div>
 
         <div class="select-element">
-          <!-- <mat-form-field>
-            <mat-label>Favorite food</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{ food.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
+          
           <select name="" id="" placeholder="select interval">
             <option value="This week">This week</option>
             <option value="This month">This month</option>
@@ -54,7 +47,6 @@
       </div>
       <div class="card-bottom">
         <div class="sales-value">
-          <!-- <img src="../../../assets/rupee-icon.svg" alt="" /> -->
           <span>{{card.value}}</span>
         </div>
         <div [style]="card.avg>0 ?'background:#009C41':'background:#F12711'" class="growth-section">
@@ -93,5 +85,14 @@
         </div>
       </div>
     </div>
+    <div class="col-2-container">
+       <app-table></app-table> 
+    </div>
+    <div class="col-1-container">
+       <app-top-selling-products></app-top-selling-products>
+    </div>
   </div>
+
+  
+
 </div>
