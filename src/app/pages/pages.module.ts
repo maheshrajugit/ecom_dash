@@ -29,7 +29,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     OverviewComponent,
     InventoryPageComponent,
     ManageWebsiteComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    
   ],
   imports: [
     CommonModule,

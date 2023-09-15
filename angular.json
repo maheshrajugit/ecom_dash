@@ -34,10 +34,12 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/html2pdf.js/dist/html2pdf.bundle.min.js"
             ],
             "allowedCommonJsDependencies": [
-              "chart.js"
+              "chart.js",
+              "html2pdf.js"
             ]
           },
           "configurations": {

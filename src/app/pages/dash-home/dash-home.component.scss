@@ -119,8 +119,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 1.25rem;
+            padding: 1rem;
             svg {
+              width:10px;
+              height: 10px;
               transition: all 500ms;
               transform: rotate(0deg);
               > path {

@@ -65,7 +65,16 @@
             <h3>Sales & Revenue</h3>
           </div>
           <div class="right">
-            <div class="select-btn-container"></div>
+            <div class="select-element">
+          
+                <select name="" id="" placeholder="select interval">
+                  <option value="This week">This week</option>
+                  <option value="This month">This month</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="6 months">6 months</option>
+                  <option value="Last Year">Last Year</option>
+                </select>
+              </div>
           </div>
         </div>
         <div class="body">
@@ -79,9 +88,21 @@
           <div class="title">
             <h3>Top Selling Categories</h3>
           </div>
-          <div class="body">
-            <app-hor-bar-graph></app-hor-bar-graph>
+          <div class="right">
+            <div class="select-element">
+          
+                <select name="" id="" placeholder="select interval">
+                  <option value="This week">This week</option>
+                  <option value="This month">This month</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="6 months">6 months</option>
+                  <option value="Last Year">Last Year</option>
+                </select>
+              </div>
           </div>
+        </div>
+        <div class="body">
+          <app-hor-bar-graph></app-hor-bar-graph>
         </div>
       </div>
     </div>
@@ -89,8 +110,31 @@
        <app-table></app-table> 
     </div>
     <div class="col-1-container">
+        
        <app-top-selling-products></app-top-selling-products>
     </div>
+    <div class="col-1-container">
+        <div class="quick-overview-cards">
+            <div [style]="'background:'+q.bgColor" *ngFor="let q of quickCards" class="quick-overview-card">
+                <div class="left">
+                    <div class="icon-holder">
+                        <img [src]="q.icon" alt="icon">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="link-title">
+                        <span>{{q.title}}</span>
+                    </div>
+                    <div class="info-stats container">
+                        <div *ngFor="let i of q.info" class="info-stat">
+                            <span class="info">{{i.title}}</span>
+                            <span class="value">{{i.value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
   </div>
 
   

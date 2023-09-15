@@ -62,6 +62,15 @@ export class TopSellingProductsComponent {
         orders: 46,
         sku:("SK-U"+Math.random() * 10000).split(".")[0],
         status: 'shipped'
+      },
+      {
+        imgUrl:"../../../assets/img/thumb-1.jpg",
+        collection:"Kanjivaram Saree",
+        date:new Date(),
+        amount: 300,
+        orders: 72,
+        sku:("SK-U"+Math.random() * 10000).split(".")[0],
+        status: 'fulfilled'
       }
 
     ];

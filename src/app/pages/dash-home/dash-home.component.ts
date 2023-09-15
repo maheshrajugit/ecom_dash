@@ -45,7 +45,16 @@ export class DashHomeComponent {
     {
       icon: '../assets/inventory-icon',
       title:"Inventory Management",
-      to:'inventory'
+      to:'inventory',
+
+      childs:[
+       
+        {title:"banner ads",to:"banners"},
+        {title:"shopping categories",to:"categories"},
+        {title:"collections",to:"collections"},
+        {title:"Filters",to:"filters"},
+        {title:"Pages",to:"pages"},
+      ]
     },
     {
       icon: '../assets/sales-icon',
@@ -155,6 +164,12 @@ export class DashHomeComponent {
       icon: '../assets/help-icon',
       title:"Help",
       to:'help'
+    },
+    
+    {
+      icon: '../assets/logs-icon',
+      title:"Logs",
+      to:'logs'
     },
     
     {
