@@ -49,11 +49,11 @@ export class DashHomeComponent {
 
       childs:[
        
-        {title:"banner ads",to:"banners"},
-        {title:"shopping categories",to:"categories"},
-        {title:"collections",to:"collections"},
-        {title:"Filters",to:"filters"},
-        {title:"Pages",to:"pages"},
+        {title:"All Products",to:"allproducts"},
+        {title:"Product varients",to:"groups"}, 
+        {title:"Product Specs",to:"groups"}, 
+        {title:"Warehouses",to:"warehouses"}, 
+        {title:"Special sales",to:"warehouses"}, 
       ]
     },
     {
@@ -191,13 +191,49 @@ export class DashHomeComponent {
   {
     const paramValue = this.route.snapshot.params['page'];
     console.log(paramValue);
-
+    var found = false;
     this.DashnavItems.map((x:any)=>{
       if(x.to==paramValue)
       {
+        found = true;
         this.selected_nav = x.title;
       }
-    })
+      
+    });
+
+    if(found == false)
+    {
+      this.ManagenavItems.map((x:any)=>{
+        if(x.to==paramValue)
+        {
+          found = true;
+          this.selected_nav = x.title;
+        }
+        
+      });
+    }
+    else if (found == false)
+    {
+      this.ClientnavItems.map((x:any)=>{
+        if(x.to==paramValue)
+        {
+          found = true;
+          this.selected_nav = x.title;
+        }
+        
+      });
+    }
+    else 
+    {
+      this.AccountnavItems.map((x:any)=>{
+        if(x.to==paramValue)
+        {
+          found = true;
+          this.selected_nav = x.title;
+        }
+        
+      });
+    }
     
   }
 
@@ -211,6 +247,7 @@ export class DashHomeComponent {
   select_nav_item(title:any, to:any)
   {
     this.selected_nav = title;
+
     this.router.navigateByUrl('dashboard/'+to);
   }
 

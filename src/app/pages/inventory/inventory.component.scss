@@ -1,0 +1,257 @@
+div.inventory-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 90vh;
+  background-color: #edeaff;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  > div.overview-main {
+    width: 100%;
+    box-sizing: border-box;
+
+    div.heading {
+      font-family: "Sen", san-serif;
+      > h3 {
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0rem 1rem;
+        margin: 0;
+      }
+    }
+
+    > div.overview-cards-container {
+      display: flex;
+      flex-direction: row;
+
+      justify-content: space-between;
+      > div.overview-card {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: "Sen", sans-serif;
+        padding: 1rem;
+        background-color: #f7f7f7;
+        color: #f7f7f7;
+        border-radius: 0.75rem;
+        margin: 1rem 0.75rem;
+        box-shadow: 0px 3px 9px rgba(24, 6, 48, 0.3);
+        > div.info-heading {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          box-sizing: border-box;
+          > div.title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1570ef;
+          }
+
+          > div.icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            // padding:0px 0px 0px 1rem;
+            background-color: #f7f7f7;
+            > img {
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+          }
+        }
+        > div.info-desc-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-family: "Sen", sans-serif;
+
+          > div.info-desc {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            > span.value {
+              padding: 0.25rem;
+              font-weight: 700;
+              font-size: 1rem;
+              color: #f7f7f7;
+            }
+            > span {
+              font-size: 0.875rem;
+
+              padding: 0.25rem;
+              color: rgba(24, 6, 48, 0.6);
+              color: #f7f7f7;
+            }
+          }
+
+          > div.info-desc:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            > span.value {
+              padding: 0.25rem;
+              font-weight: 700;
+              font-size: 1rem;
+            }
+            > span {
+              font-size: 0.875rem;
+
+              padding: 0.25rem;
+              color: rgba(24, 6, 48, 0.6);
+              color: #f7f7f7;
+            }
+          }
+        }
+      }
+    }
+  }
+  > div.all-products-container {
+    width: 100%;
+    box-sizing: border-box;
+    div.products-table {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-radius: 1rem;
+      box-shadow: 0px 3px 9px rgba(24, 6, 48, 0.3);
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      padding-top: 0;
+      > div.table-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: "Sen", sans-serif;
+        > div.heading {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          > h3 {
+            display: inline-block;
+            margin: 0;
+            padding: 1rem 0;
+            font-weight: 600;
+            font-size: 1rem;
+
+            margin: 0;
+          }
+        }
+        > div.actions-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          > div.action-btn:nth-of-type(1) {
+            transform: scale(0.75);
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            select {
+                
+               
+              > option {
+                font-size: .875rem;
+                
+              }
+            }
+          }
+          > div.action-btn {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: "Sen", sans-serif;
+            margin: 0rem 0.75rem;
+            > div.icon {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              > img {
+                width: 1.25rem;
+                height: 1.25rem;
+              }
+            }
+            > div.btn-name {
+              padding-left: 0.25rem;
+            }
+          }
+          > div.action-btn.add {
+            color: #fff;
+            background-color: #009c41;
+            > div.icon {
+              > img {
+              }
+            }
+            > div.btn-name {
+            }
+          }
+          > div.action-btn.filter {
+            background-color: #180630;
+            color: #fff;
+            > div.icon {
+              > img {
+              }
+            }
+            > div.btn-name {
+            }
+          }
+        }
+      }
+      > div.table-body {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: scroll;
+        > table {
+          width: 100%;
+          box-sizing: border-box;
+          > tbody {
+            > tr {
+              > th {
+                padding: 0.5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                text-align: left;
+                text-transform: capitalize;
+                border-radius: 4px;
+              }
+            }
+            > tr {
+              > td {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                padding: 0.5rem;
+                white-space: nowrap;
+                text-align: center;
+                text-transform: capitalize;
+                span.thumbnail-holder {
+                  img {
+                    width: 3rem;
+                    height: calc(3rem * 16 / 9);
+                  }
+                }
+              }
+            }
+            > tr:hover {
+              cursor: pointer;
+              background-color: rgba(218, 190, 255, 0.47);
+            }
+            > tr:nth-child(1):hover {
+              cursor: pointer;
+              background-color: #edeaff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

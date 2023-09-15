@@ -1,0 +1,90 @@
+<div class="inventory-main">
+  <div class="overview-main">
+    <div class="heading">
+      <h3>Overall Inventory</h3>
+    </div>
+    <div class="overview-cards-container">
+      <div
+        [style]="
+          'background:linear-gradient(270deg,' +
+          card.color +
+          ',' +
+          card.color +
+          'bf)'
+        "
+        *ngFor="let card of inventoryOverviewCards"
+        class="overview-card"
+      >
+        <div class="info-heading">
+          <div [style]="'color:' + 'white'" class="title">
+            {{ card.title }}
+          </div>
+          <div class="icon">
+            <img [src]="card.icon" alt="cats" />
+          </div>
+        </div>
+        <div class="info-desc-container">
+          <div *ngFor="let info of card.info" class="info-desc">
+            <span class="value">
+              {{ info.value }}
+            </span>
+            <span>
+              {{ info.type }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="all-products-container">
+    <div class="products-table">
+      <div class="table-header-container">
+        <div class="heading">
+          <h3>All Products</h3>
+        </div>
+        <div class="actions-container">
+          <div class="action-btn">
+            <mat-form-field>
+                <mat-label>Warehouse</mat-label>
+                <select matNativeControl required>
+                    <option value="Western Hills">Western Hills</option>
+                    <!-- <option value="Western Hills">Western Hills</option> -->
+                    
+                  </select>
+              </mat-form-field>
+          </div>
+          <div class="action-btn add">
+            <div class="icon">
+              <img src="../../../assets/add-plus-icon.svg" alt="" />
+            </div>
+            <div class="btn-name">Add Products</div>
+          </div>
+          <div class="action-btn filter">
+            <div class="icon">
+              <img src="../../../assets/Filters-lines-icon.svg" alt="" />
+            </div>
+            <div class="btn-name">Filter</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-body">
+        <table>
+          <tbody>
+            <tr>
+              <th *ngFor="let h of product_specs"><span >{{h}}</span></th>
+            </tr>
+            <tr>
+              <td *ngFor="let h of product_specs" >
+                <span *ngIf="h!='thumb'">{{productModel[h]}}</span>
+                <span class="thumbnail-holder" *ngIf="h=='thumb'">
+                    <img [src]="productModel[h]" alt="thumb" />
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

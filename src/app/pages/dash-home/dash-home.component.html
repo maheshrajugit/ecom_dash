@@ -289,9 +289,14 @@
           <app-manage-website></app-manage-website>
         </section>
 
-        <!-- ========Inventory========== -->
+        <!-- ========Users ========== -->
         <section *ngIf="selected_nav == 'manage users'" class="overview-main">
           <app-manage-users></app-manage-users>
+        </section>
+
+        <!-- ========Users ========== -->
+        <section *ngIf="selected_nav == 'Inventory Management'" class="overview-main">
+          <app-inventory></app-inventory>
         </section>
       </main>
     </div>

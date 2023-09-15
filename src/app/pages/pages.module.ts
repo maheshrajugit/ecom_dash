@@ -21,6 +21,7 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { InventoryComponent } from './inventory/inventory.component';
 @NgModule({
   declarations: [
     LoginPortalComponent,
@@ -30,6 +31,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     InventoryPageComponent,
     ManageWebsiteComponent,
     ManageUsersComponent,
+    InventoryComponent,
     
   ],
   imports: [
