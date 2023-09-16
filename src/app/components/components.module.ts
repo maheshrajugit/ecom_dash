@@ -10,23 +10,30 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { TopSellingProductsComponent } from './top-selling-products/top-selling-products.component';
+import { OverlayDailogComponent } from './overlay-dailog/overlay-dailog.component';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     LineGraphComponent,
     HorBarGraphComponent,
     TableComponent,
-    TopSellingProductsComponent
+    TopSellingProductsComponent,
+    OverlayDailogComponent
   ],
   imports: [
     CommonModule,
     NgChartsModule,
-    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule
+    FormsModule,
+    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,
+    MatIconModule
   ],
   exports: [
     LineGraphComponent,
     HorBarGraphComponent,
     NgChartsModule,
+    OverlayDailogComponent,
     TableComponent,
     TopSellingProductsComponent,
     MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule

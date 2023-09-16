@@ -21,6 +21,8 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatDialogModule} from '@angular/material/dialog';
 import { InventoryComponent } from './inventory/inventory.component';
 @NgModule({
   declarations: [
@@ -49,6 +51,9 @@ import { InventoryComponent } from './inventory/inventory.component';
     MatSelectModule,
     MatFormFieldModule,
     
+  
+
+    
    
   ],
   exports: [
@@ -58,7 +63,9 @@ import { InventoryComponent } from './inventory/inventory.component';
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class PagesModule { 

@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss']
+  styleUrls: ['./inventory.component.scss'],
+
+  
 })
 export class InventoryComponent {
 
+  public value='clear me';
 
   public inventoryOverviewCards:any = [
     {
@@ -53,7 +57,7 @@ export class InventoryComponent {
     thumb:"../../../assets/img/thumb-2.jpg",
     sku:"SHG07C00542",
     name:"Green Silk Maheswari Saree",
-    s_price:4300,
+    price:4300,
     category:'saree',
     occation:'formal wear',
     origin:'Maheshwar',
@@ -72,20 +76,43 @@ export class InventoryComponent {
 
   }
 
+  public products:any = []
+
   public product_specs:any;
+  public temp_specs:any;
+  public isDialogOpen:any = 'false';
+  constructor() {
 
-  constructor()
+  }
+
+  openDialog(val:any='false') {
+    console.log(val);
+    
+    this.isDialogOpen = 'true';
+  }
+
+  addProduct(prod:any)
   {
+    this.products.push(prod);
+    console.log(this.products);
+    this.isDialogOpen = 'false';
+  }
 
+  closeDialog(e:any)
+  {
+    this.isDialogOpen = 'false'
   }
 
   ngOnInit()
   {
     this.product_specs = Object.keys(this.productModel);
     this.product_specs = this.product_specs.filter((x:any)=>x!='id')
+    this.products.push(this.productModel);
+   
   }
 
-
-
-
 }
+
+
+
+export class DialogContent {}
