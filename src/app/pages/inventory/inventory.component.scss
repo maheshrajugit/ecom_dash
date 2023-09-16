@@ -233,16 +233,19 @@ div.inventory-main {
               }
             }
             > tr {
+              width:100%;
               > td {
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                 padding: 0.5rem;
                 white-space: nowrap;
-                text-align: center;
+                text-align: left;
                 text-transform: capitalize;
                 span.thumbnail-holder {
+                    box-shadow: 0px 2px 4px rgba(0,0,0,.6);
                   img {
                     width: 3rem;
                     height: calc(3rem * 4 / 3);
+                    border-radius: 4px;
                   }
                 }
               }

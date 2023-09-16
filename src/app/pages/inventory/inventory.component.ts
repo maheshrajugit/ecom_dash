@@ -64,11 +64,11 @@ export class InventoryComponent {
     craft:'wowen',
     blouse_type:'unstiched blouse piece',
     blouse_dimension:'70cm x 110cm',
-    colour:'Green',
+    color:'Green',
     loom:'handloom',
     dimension:'5.3m x 1.1m',
     fabric:'silk',
-    returns:false,
+    returns:'false',
     zari:'Tested Zari',
     country:'India',
     stock:30,
@@ -77,10 +77,15 @@ export class InventoryComponent {
   }
 
   public products:any = []
-
+  public panelOpenState:any= false;
   public product_specs:any;
   public temp_specs:any;
   public isDialogOpen:any = 'false';
+  public basicProdItems:any = [
+    "sku","thumb","name","price","stock","alert","color"
+  ];
+
+
   constructor() {
 
   }
@@ -91,14 +96,9 @@ export class InventoryComponent {
     this.isDialogOpen = 'true';
   }
 
-  addProduct(prod:any)
-  {
-    this.products.push(prod);
-    console.log(this.products);
-    this.isDialogOpen = 'false';
-  }
+  
 
-  closeDialog(e:any)
+  closeDialog(e:any="false")
   {
     this.isDialogOpen = 'false'
   }
@@ -111,8 +111,15 @@ export class InventoryComponent {
    
   }
 
+  addProduct(prod:any)
+  {
+    console.log("llll");
+    
+    this.products.push(prod);
+    console.log(this.products);
+    this.closeDialog('false');
+  }
+
 }
 
 
-
-export class DialogContent {}

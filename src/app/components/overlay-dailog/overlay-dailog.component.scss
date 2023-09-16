@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c599ff; /* Change the color of the thumb */
+  border-radius: 4px; /* Add rounded corners to the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(24, 6, 48, 0.53); /* Change the thumb color on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #dabeff; /* Change the track color */
+}
+
 div.overlay-backdrop {
   background-color: rgba(24, 6, 48, 0.6);
   position: fixed;
@@ -6,25 +23,28 @@ div.overlay-backdrop {
   top: 0;
   left: 0;
   z-index: 89;
-  transform: scale(1);
+  opacity: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  // transform: scale(1);
 
+  transition: all 250ms;
   div.close-icon {
     position: absolute;
-    right:1.5rem;
-    top:1.5rem;
+    right: 1.5rem;
+    top: 1.5rem;
+    cursor: pointer;
     > img {
-        width:2rem;
-        height:2rem;
+      width: 2rem;
+      height: 2rem;
     }
   }
 
   > div.dialog-main {
     z-index: 99;
-   
+
     font-family: "Sen", sans-serif;
     background-color: #f7f7f7;
     box-sizing: border-box;
@@ -34,24 +54,56 @@ div.overlay-backdrop {
     margin-left: 10vw;
     height: 80vh;
     overflow-y: scroll;
-   
+    transform: scale(1);
     > div.dialog-heading {
-        
-      > h3 {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      > span.h3 {
         font-size: 1.25rem;
         font-weight: 700;
-        margin-top:1.5rem;
+        margin-top: 1.5rem;
+      }
+      > span.h6 {
+        display: flex;
+        align-items: center;
+        i {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right:.5rem;
+          img {
+            width:1rem;
+            height: 1rem;
+          }
+        }
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 1.5rem;
+      }
+      > span.h6:hover {
+        display: flex;
+        align-items: center;
+        color:#F36960;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 1.5rem;
       }
     }
     > div.dialog-content {
       min-height: 150px;
       > div.form-container {
-        width:100%;
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         // justify-content: space-evenly;
         > div.form-input-container {
+          flex-grow: 1;
           margin: 0.25rem;
           > div.input {
             > mat-form-field.example-form-field {
@@ -86,6 +138,13 @@ div.overlay-backdrop {
           border-radius: 0.25rem;
           box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.2);
         }
+        > div.action-btn:nth-child(1):hover {
+          padding: 0.5rem;
+          background-color: #F36960;
+          color: #fff;
+          border-radius: 0.25rem;
+          box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.2);
+        }
         > div.action-btn:nth-child(2) {
           padding: 0.5rem;
           background-color: #009c41;
@@ -99,6 +158,13 @@ div.overlay-backdrop {
 }
 
 div.overlay-backdrop.close {
-  transition: all 150ms;
-  transform: scale(0);
+  transition: all 250ms;
+
+  background: transparent;
+  top: -100%;
+
+  > div.dialog-main.close {
+    z-index: 99;
+    top: -100%;
+  }
 }

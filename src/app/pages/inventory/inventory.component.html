@@ -1,6 +1,6 @@
 <div class="inventory-main">
 
-   <app-overlay-dailog [formData]="product_specs" [isOpen]="isDialogOpen" (closeTheDialogue)="closeDialog($event)"></app-overlay-dailog>
+   <app-overlay-dailog [isOpen]="isDialogOpen" (addTheProduct)="addProduct($event)" (closeTheDialogue)="closeDialog($event)"></app-overlay-dailog>
     
   <div class="overview-main">
     <div class="heading">
@@ -8,8 +8,7 @@
     </div>
     <div class="overview-cards-container">
       <div
-        [style]="'background:linear-gradient(270deg,' + card.color +',' +card.color +'bf)'
-        "
+        [style]="'background:linear-gradient(270deg,' + card.color +',' +card.color +'bf)'"
         *ngFor="let card of inventoryOverviewCards"
         class="overview-card"
       >
@@ -69,17 +68,24 @@
         <table>
           <tbody>
             <tr>
-              <th *ngFor="let h of product_specs">
+              <th *ngFor="let h of basicProdItems">
                 <span>{{ h }}</span>
               </th>
             </tr>
             <tr *ngFor="let prod of products">
-              <td *ngFor="let h of product_specs">
-                <span *ngIf="h != 'thumb'">{{ prod[h] }}</span>
+            
+              <td *ngFor="let h of basicProdItems">
+                <span *ngIf="h != 'thumb' && h!='price' ">{{ prod[h] }}</span>
+                <span *ngIf="h == 'price' ">₹{{prod[h] }}</span>
                 <span class="thumbnail-holder" *ngIf="h == 'thumb'">
                   <img [src]="prod[h]" alt="thumb" />
                 </span>
               </td>
+            </tr>
+            <tr>
+              
+        
+              
             </tr>
           </tbody>
         </table>
