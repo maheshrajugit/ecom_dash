@@ -52,29 +52,35 @@ div.overlay-backdrop {
     border-radius: 0.75rem;
     max-width: 60vw;
     margin-left: 10vw;
-    height: 80vh;
-    overflow-y: scroll;
+    height: 90vh;
+    
     transform: scale(1);
     > div.dialog-heading {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0px 2px 1px rgba(24, 6, 48, 0.2);
+
       > span.h3 {
         font-size: 1.25rem;
         font-weight: 700;
         margin-top: 1.5rem;
+          margin-bottom: 1rem;
+          color:#9D50BB;
       }
       > span.h6 {
+        margin:0;
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         i {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-right:.5rem;
+          margin-right: 0.5rem;
           img {
-            width:1rem;
+            width: 1rem;
             height: 1rem;
           }
         }
@@ -86,7 +92,7 @@ div.overlay-backdrop {
       > span.h6:hover {
         display: flex;
         align-items: center;
-        color:#F36960;
+        color: #f36960;
         cursor: pointer;
         text-decoration: underline;
         font-size: 1rem;
@@ -96,17 +102,27 @@ div.overlay-backdrop {
     }
     > div.dialog-content {
       min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      height:calc(80vh - 15%);
+        overflow-y: scroll;
       > div.form-container {
         width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         // justify-content: space-evenly;
+        justify-content: flex-start;
         > div.form-input-container {
           flex-grow: 1;
           margin: 0.25rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           > div.input {
             > mat-form-field.example-form-field {
+              display: flex;
+              box-sizing: border-box;
               > mat-label {
               }
               > input {
@@ -116,12 +132,100 @@ div.overlay-backdrop {
                 > mat-icon {
                 }
               }
+              span {
+                margin-right:1rem;
+              }
             }
           }
         }
       }
+      > div.form-input-tile {
+        display: flex;
+        flex-direction: row;
+        .input {
+          padding:0rem 1rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          input {
+            display: none;
+          }
+          .icon-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            span {
+              font-family: 'Sen',sans-serif;
+              font-size: 1rem;
+              font-weight: 600;
+              color:rgba(24, 6, 48, 0.75);
+            }
+            img {
+              height:3.5rem;
+              width:auto;
+            }
+          }
+
+          .icon-container.only {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #009c41;
+            padding:.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            span {
+              font-family: 'Sen',sans-serif;
+              font-size: 1rem;
+              font-weight: 600;
+              color:#ffff;
+            }
+            img {
+              height:2.5rem;
+              width:auto;
+            }
+          }
+        }
+      }
+      > div.images-gallery {
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+
+        h3 {
+          font-family: 'Sen',sans-serif;
+          font-size: 1rem;
+          font-weight: 600;
+          color:rgba(24, 6, 48, 0.75);
+        }
+      }
     }
     > div.dialog-footer {
+      display: flex;
+      flex-direction: row;
+      width:100%;
+      justify-content: space-between;
+      align-items: center;
+
+      .progress {
+        flex-grow: 1;
+        padding:0rem 1rem;
+        color:#009c41;
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+
+        .icon 
+        {
+          img {
+            width:2rem;
+            height: 2rem;
+          }
+        }
+      }
       > div.action-btns {
         display: flex;
         flex-direction: row;
@@ -140,7 +244,7 @@ div.overlay-backdrop {
         }
         > div.action-btn:nth-child(1):hover {
           padding: 0.5rem;
-          background-color: #F36960;
+          background-color: #f36960;
           color: #fff;
           border-radius: 0.25rem;
           box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.2);
