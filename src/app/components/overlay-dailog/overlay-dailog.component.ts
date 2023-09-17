@@ -47,11 +47,11 @@ export class OverlayDailogComponent implements OnInit {
     { title: 'Occation', value: '', type: 'select', key: 'occation', options: ["Wedding", "Formal", "Festive", "Casual", "Party"] },
     { title: 'Country', value: 'India', type: 'select', key: 'country', options: ["India", "China", "Singapore", "Malasia", "Pakistan"] },
     { title: 'Blouse Type', value: 'Unstiched blouse piece', type: 'select', key: 'blouse_type', options: ["Unstiched blouse piece", "Ready-made"] },
-    { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] }
-
+    { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] },
+    { title: 'Product images', value: [], type: 'text-area', key: 'p_images' }
   ]
 
-
+  public isEditing: any = false;
   public progress_percent: any = 0;
 
 
@@ -63,7 +63,7 @@ export class OverlayDailogComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
 
     let i = 1;
     this.productModel.map((x: any) => {
@@ -91,7 +91,23 @@ export class OverlayDailogComponent implements OnInit {
 
   }
 
+  calcDiscount(e: any, key: any, idx: any = 0) {
 
+    console.log(e);
+
+    console.log('lol', e.target.value);
+    if (key == 'discount') {
+      if (this.temp_data['price'] != '')
+        this.temp_data['b_price'] = Math.round(parseInt(this.temp_data['price']) / (1 - parseInt(this.temp_data['discount']) / 100));
+      else {
+        this.temp_data['price'] = Math.round(parseInt(this.temp_data['b_price']) * (1 - parseInt(this.temp_data['discount']) / 100));
+      }
+    }
+    else {
+      this.temp_data['discount'] = Math.round((1 - (parseInt(this.temp_data['price']) / parseInt(this.temp_data['b_price']))) * 100);
+    }
+    console.log("vals", this.temp_data['discount'], this.temp_data['price'], this.temp_data['b_price']);
+  }
 
 
   triggerFileInput() {
@@ -143,6 +159,7 @@ export class OverlayDailogComponent implements OnInit {
           const file = selectedFiles[i];
           console.log(`Selected file ${i + 1}: ${file.name}`, file);
           this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file) })
+          this.temp_data.thumb = URL.createObjectURL(file);
           // You can perform further actions with each selected file here
         }
       }

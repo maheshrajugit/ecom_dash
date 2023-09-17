@@ -95,7 +95,8 @@ export class InventoryComponent {
     { title: 'Occation', value: '', type: 'select', key: 'occation', options: ["Wedding", "Formal", "Festive", "Casual", "Party"] },
     { title: 'Country', value: 'India', type: 'select', key: 'country', options: ["India", "China", "Singapore", "Malasia", "Pakistan"] },
     { title: 'Blouse Type', value: 'Unstiched blouse piece', type: 'select', key: 'blouse_type', options: ["Unstiched blouse piece", "Ready-made"] },
-    { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] }
+    { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] },
+    { title: 'Product images', value: [], type: 'image', key: 'p_images' }
 
   ];
 
@@ -117,6 +118,7 @@ export class InventoryComponent {
 
   public filtered_options: any = {};
   public show_moreFilters:any = false;
+  public editProdIndex: any = 0;
   public pageIndex: any = 0;
   public length: any = 100;
   public pageSize: any = 10;
@@ -146,16 +148,30 @@ export class InventoryComponent {
     return array;
   }
 
-  editProduct(obj:any)
+  editProduct(obj:any,idx:any)
   {
     this.selected_product = obj;
     console.log(this.selected_product);
-    
+    this.editProdIndex = idx;
     this.isEditProductOpen = 'true';
   }
 
+  saveProduct(data:any)
+  {
+    let prods = [...this.products];
+
+    prods[this.editProdIndex] = {...data};
+
+    this.products = [...prods];
+    console.log(this.products);
+    
+    this.isEditProductOpen =false;
+    
+  }
+
   closeEditDialog(e: any = "false") {
-    this.isEditProductOpen = 'false'
+    this.isEditProductOpen = 'false';
+    
   }
 
 

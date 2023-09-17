@@ -5,64 +5,99 @@
   <div (click)="closeDialogue()" class="close-icon">
     <img src="../../../assets/close-icon.svg" alt="X" />
   </div>
-  <div #form [ngClass]="isOpen == 'true' ? 'dialog-main' : 'dialog-main close'">
+  <div
+    #editform
+    [ngClass]="isOpen == 'true' ? 'dialog-main' : 'dialog-main close'"
+  >
     <div class="dialog-heading">
       <span class="h3">Product</span>
-      <span (click)="resetForm()" class="h6">
-        <i> <img src="../../../assets/edit-icon.svg" /> </i>Edit</span
-      >
+      <span (click)="editForm()" class="h6">
+        <i>
+          <img
+            [src]="
+              !isEditing
+                ? '../../../assets/edit-icon.svg'
+                : '../../../assets/exit-icon.svg'
+            "
+          />
+        </i>
+        <span [innerText]="isEditing ? 'Exit Editor' : 'Edit'">Edit</span>
+      </span>
     </div>
     <div class="dialog-content">
       <div class="form-container">
-        <div *ngFor="let x of productModel" class="form-input-container">
-          <div class="input">
-            <mat-form-field class="example-form-field">
-              <mat-label>{{ x.title }}</mat-label>
+        <div *ngIf="!isEditing" class="form-view-container">
+          <div *ngFor="let x of productModel" class="data-container">
+            <div class="title">
+              <span>{{ x.title }}</span>
+            </div>
+            <div class="value">
+              <span>{{ temp_data[x.key] }}</span>
+            </div>
+          </div>
+        </div>
 
-              <input
-                required
-                *ngIf="x.type != 'select'"
-                matInput
-                [type]="x.type"
-                [(ngModel)]="temp_data[x.key]"
-              />
-              <span
-                matSuffix
-                *ngIf="temp_data[x.key] != '' && x.type == 'text'"
-                (click)="temp_data[x.key] = ''"
-              >
-                <img
-                  src="../../../assets/close-icon-dark.svg"
-                  width="16px"
-                  height="16px"
-                  alt=""
+        <div *ngIf="isEditing" class="edit-inputs-container">
+          <div *ngFor="let x of productModel;let i = index;" class="form-input-container">
+            <div class="input">
+              <mat-form-field class="example-form-field">
+                <mat-label>{{ x.title }}</mat-label>
+
+                <input
+                  required
+                  disabled="false"
+                  *ngIf="x.type != 'select' && (x.key!='price' && x.key!='b_price' && x.key!='discount')"
+                  matInput
+                  [type]="x.type"
+                  [(ngModel)]="temp_data[x.key]"
                 />
-              </span>
+                <input
+                  required
+                  disabled="false"
+                  *ngIf="(x.type != 'select') && (x.key=='price' || x.key=='b_price' || x.key=='discount')"
+                  matInput
+                  [type]="x.type"
+                  [(ngModel)]="temp_data[x.key]"
+                  (input)="calcDiscount($event,x.key)"
+                />
 
-              <input
-                *ngIf="x.type == 'select'"
-                type="text"
-                placeholder="Pick one"
-                aria-label="Number"
-                matInput
-                [(ngModel)]="temp_data[x.key]"
-                [matAutocomplete]="auto"
-                (input)="filterOptions($event, x)"
-              />
-
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option
-                  *ngFor="let option of filtered_options[x.key]"
-                  [value]="option"
+                <span
+                  matSuffix
+                  *ngIf="temp_data[x.key] != '' && x.type == 'text'"
+                  (click)="temp_data[x.key] = ''"
                 >
-                  {{ option }}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+                  <img
+                    src="../../../assets/close-icon-dark.svg"
+                    width="16px"
+                    height="16px"
+                    alt=""
+                  />
+                </span>
+
+                <input
+                  *ngIf="x.type == 'select'"
+                  type="text"
+                  placeholder="Pick one"
+                  aria-label="Number"
+                  matInput
+                  [(ngModel)]="temp_data[x.key]"
+                  [matAutocomplete]="auto"
+                />
+
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option
+                    *ngFor="let option of filtered_options[x.key]"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
-      <div class="form-input-tile">
+      <div *ngIf="isEditing" class="form-input-tile">
         <div class="input">
           <input
             multiple
@@ -100,7 +135,9 @@
       </div>
       <div class="action-btns">
         <div (click)="closeDialogue()" class="action-btn">Cancel</div>
-        <div (click)="add_product()" class="action-btn">Save Product</div>
+        <div *ngIf="isEditing" (click)="save_product()" class="action-btn">
+          Save Changes
+        </div>
       </div>
     </div>
   </div>

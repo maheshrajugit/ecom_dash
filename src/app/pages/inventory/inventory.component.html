@@ -8,7 +8,7 @@
   <app-overlay-edit-products
   [isOpen]="isEditProductOpen"
   [formData]="selected_product"
-    (saveTheProduct)="addProduct($event)"
+    (saveTheProduct)="saveProduct($event)"
     (closeTheDialogue)="closeEditDialog($event)"
   >
 
@@ -200,7 +200,7 @@
                 </span>
               </th>
             </tr>
-            <tr (click)="editProduct(products[i])" *ngFor="let i of range(pageIndex, pageSize)">
+            <tr (click)="editProduct(products[i],i)" *ngFor="let i of range(pageIndex, pageSize)">
               <td>{{ i + 1 }}</td>
               <td *ngFor="let h of basicProdItems">
                 <span *ngIf="h != 'thumb' && h != 'price'">{{
