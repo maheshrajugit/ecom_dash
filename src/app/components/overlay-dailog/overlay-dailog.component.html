@@ -1,130 +1,96 @@
-<div
-  (click)="detectCloseDialogue($event)"
-  [ngClass]="isOpen == 'true' ? 'overlay-backdrop' : 'overlay-backdrop close'"
->
-  <div (click)="closeDialogue()" class="close-icon">
-    <img src="../../../assets/close-icon.svg" alt="X" />
-  </div>
-  <div #form [ngClass]="isOpen == 'true' ? 'dialog-main' : 'dialog-main close'">
-    <div class="dialog-heading">
-      <span class="h3">Add Products</span>
-      <span (click)="resetForm()" class="h6">
-        <i> <img src="../../../assets/reset-icon.svg" /> </i>Reset all</span
-      >
+<div (click)="detectCloseDialogue($event)" [ngClass]="isOpen=='true'?'overlay-backdrop':'overlay-backdrop close'">
+    <div (click)="closeDialogue()" class="close-icon">
+        <img src="../../../assets/close-icon.svg" alt="X">
     </div>
-    <div class="dialog-content">
-        <div class="form-container">
-          <div *ngIf="!isEditing" class="form-view-container">
-            <div *ngFor="let x of productModel" class="data-container">
-              <div class="title">
-                <span>{{ x.title }}</span>
-              </div>
-              <div class="value">
-                <span>{{ temp_data[x.key] }}</span>
-              </div>
+    <div #form  [ngClass]="isOpen=='true'?'dialog-main':'dialog-main close'">
+        <div class="dialog-heading">
+            <span class='h3'>Add Products</span>
+            <span (click)="resetForm()" class='h6'> <i> <img src="../../../assets/reset-icon.svg"  /> </i>Reset all</span>
+        </div>
+        <div class="dialog-content">
+            <div class="form-container">
+                <div *ngFor="let x of productModel" class="form-input-container">
+                    <div class="input">
+                        <mat-form-field  class="example-form-field">
+                            <mat-label>{{x.title}}</mat-label>
+                            
+                            <input required 
+                            *ngIf="x.type != 'select' && (x.key!='price' && x.key!='b_price' && x.key!='discount')"
+                            matInput [type]="x.type" 
+                            [(ngModel)]="temp_data[x.key]">
+
+
+                            <input
+                            required
+                            disabled="false"
+                            *ngIf="(x.type != 'select') && (x.key=='price' || x.key=='b_price' || x.key=='discount')"
+                            matInput
+                            [type]="x.type"
+                            [(ngModel)]="temp_data[x.key]"
+                            (input)="calcDiscount($event,x.key)"
+                          />
+                            <span matSuffix *ngIf="temp_data[x.key]!='' && x.type=='text'"  (click)="temp_data[x.key]=''">
+                                <img src="../../../assets/close-icon-dark.svg" width="16px" height="16px" alt="">
+                            </span>
+
+                            <input *ngIf="x.type=='select'" type="text"
+                                    placeholder="Pick one"
+                                    aria-label="Number"
+                                    matInput
+                                    [(ngModel)]="temp_data[x.key]"
+                                    [matAutocomplete]="auto"
+                                    (input)="filterOptions($event,x)"
+                                    />
+                                    
+                                        <mat-autocomplete  #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of filtered_options[x.key]" [value]="option">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+
+                                    
+                            
+                            
+                        </mat-form-field>
+                        
+                    </div>
+                </div>
+                
+              
             </div>
-          </div>
-  
-          <div *ngIf="isEditing" class="edit-inputs-container">
-            <div *ngFor="let x of productModel;let i = index;" class="form-input-container">
-              <div class="input">
-                <mat-form-field class="example-form-field">
-                  <mat-label>{{ x.title }}</mat-label>
-  
-                  <input
-                    required
-                    disabled="false"
-                    *ngIf="x.type != 'select' && (x.key!='price' && x.key!='b_price' && x.key!='discount')"
-                    matInput
-                    [type]="x.type"
-                    [(ngModel)]="temp_data[x.key]"
-                  />
-                  <input
-                    required
-                    disabled="false"
-                    *ngIf="(x.type != 'select') && (x.key=='price' || x.key=='b_price' || x.key=='discount')"
-                    matInput
-                    [type]="x.type"
-                    [(ngModel)]="temp_data[x.key]"
-                    (input)="calcDiscount($event,x.key)"
-                  />
-  
-                  <span
-                    matSuffix
-                    *ngIf="temp_data[x.key] != '' && x.type == 'text'"
-                    (click)="temp_data[x.key] = ''"
-                  >
-                    <img
-                      src="../../../assets/close-icon-dark.svg"
-                      width="16px"
-                      height="16px"
-                      alt=""
-                    />
-                  </span>
-  
-                  <input
-                    *ngIf="x.type == 'select'"
-                    type="text"
-                    placeholder="Pick one"
-                    aria-label="Number"
-                    matInput
-                    [(ngModel)]="temp_data[x.key]"
-                    [matAutocomplete]="auto"
-                  />
-  
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option
-                      *ngFor="let option of filtered_options[x.key]"
-                      [value]="option"
-                    >
-                      {{ option }}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
+            <div class="form-input-tile">
+                <div class="input">
+                    <input multiple type="file" (change)="fileSelected($event)" #fileInput name="file" value="Add Images" id="">
+                    <div (click)="triggerFileInput()" class="icon-container">
+                        <span>Add Product Images :</span>
+                        <img src="../../../assets/add-image-icon.svg" alt="">
+                     
+                        
+                    </div>
+                </div>
+                
             </div>
-          </div>
-        </div>
-        <div *ngIf="isEditing" class="form-input-tile">
-          <div class="input">
-            <input
-              multiple
-              type="file"
-              (change)="fileSelected($event)"
-              #fileInput
-              name="file"
-              value="Add Images"
-              id=""
-            />
-            <div (click)="triggerFileInput()" class="icon-container">
-              <span>Add Product Images :</span>
-              <img src="../../../assets/add-image-icon.svg" alt="" />
+            <div *ngIf="prod_images.length>0" class="images-gallery">
+                
+                <h3>Preview:</h3>
+                <app-gallery-view [allImages]="prod_images"></app-gallery-view>
             </div>
-          </div>
         </div>
-        <div *ngIf="prod_images.length > 0" class="images-gallery">
-          <h3>Preview:</h3>
-          <app-gallery-view [allImages]="prod_images"></app-gallery-view>
+        <div class="dialog-footer">
+            <div class="progress">
+                <mat-progress-bar *ngIf="prod_images.length>0" mode="determinate" value="{{progress_percent}}"></mat-progress-bar>
+                <div [style]="progress_percent!=100?'opacity:0':'opacity:1'" class="icon">
+                    <img src="../../../assets/done-success.svg" alt="">
+                </div>
+            </div>
+            <div class="action-btns">
+                <div (click)="closeDialogue()" class="action-btn">
+                   Cancel 
+                </div>
+                <div (click)="add_product()" class="action-btn">
+                   Save Product
+                </div>
+            </div>
         </div>
-      </div>
-    <div class="dialog-footer">
-      <div class="progress">
-        <mat-progress-bar
-          *ngIf="prod_images.length > 0"
-          mode="determinate"
-          value="{{ progress_percent }}"
-        ></mat-progress-bar>
-        <div
-          [style]="progress_percent != 100 ? 'opacity:0' : 'opacity:1'"
-          class="icon"
-        >
-          <img src="../../../assets/done-success.svg" alt="" />
-        </div>
-      </div>
-      <div class="action-btns">
-        <div (click)="closeDialogue()" class="action-btn">Cancel</div>
-        <div (click)="add_product()" class="action-btn">Save Product</div>
-      </div>
     </div>
-  </div>
 </div>

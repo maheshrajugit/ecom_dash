@@ -113,37 +113,84 @@ div.overlay-backdrop {
         flex-wrap: wrap;
         // justify-content: space-evenly;
         justify-content: flex-start;
-        > div.form-input-container {
-          flex-grow: 1;
-          margin: 0.25rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          > div.input {
-            > mat-form-field.example-form-field {
-              display: flex;
-              box-sizing: border-box;
-              > mat-label {
+
+        > div.form-view-container {
+            width:100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+          > div.data-container {
+            flex-grow: 1;
+            flex-shrink: 1;
+            min-width:30%;
+            max-width:30%;
+            display: flex;
+            margin:.5rem;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-family: 'Sen',sans-serif;
+            border-bottom: 1px solid rgba(24, 6, 48, 0.6);
+            > div.title {
+                
+               padding-left:.5rem;
+               color:#9d50bb;
+               font-weight: 500;
+              > span {
+                font-size: .75rem;
               }
-              > input {
-                text-transform: capitalize;
-              }
-              > button {
-                > mat-icon {
-                }
-              }
-              span {
-                margin-right:1rem;
+            }
+            > div.value {
+                padding:.5rem;
+                font-size: 1rem;
+                font-weight: 500;
+              > span {
               }
             }
           }
         }
+        .edit-inputs-container
+        {
+            width:100%;
+            display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+            > div.form-input-container {
+                flex-grow: 1;
+                margin: 0.25rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                > div.input {
+                  > mat-form-field.example-form-field {
+                    display: flex;
+                    box-sizing: border-box;
+                    > mat-label {
+                    }
+                    > input {
+                      text-transform: capitalize;
+                    }
+                    > button {
+                      > mat-icon {
+                      }
+                    }
+                    span {
+                      margin-right: 1rem;
+                    }
+                  }
+                }
+              }
+        }
+        
       }
       > div.form-input-tile {
         display: flex;
         flex-direction: row;
         .input {
-          padding:0rem 1rem;
+          padding: 0rem 1rem;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -157,14 +204,14 @@ div.overlay-backdrop {
             align-items: center;
             cursor: pointer;
             span {
-              font-family: 'Sen',sans-serif;
+              font-family: "Sen", sans-serif;
               font-size: 1rem;
               font-weight: 600;
-              color:rgba(24, 6, 48, 0.75);
+              color: rgba(24, 6, 48, 0.75);
             }
             img {
-              height:3.5rem;
-              width:auto;
+              height: 3.5rem;
+              width: auto;
             }
           }
 
@@ -174,18 +221,18 @@ div.overlay-backdrop {
             justify-content: center;
             align-items: center;
             background-color: #009c41;
-            padding:.5rem;
+            padding: 0.5rem;
             border-radius: 10px;
             cursor: pointer;
             span {
-              font-family: 'Sen',sans-serif;
+              font-family: "Sen", sans-serif;
               font-size: 1rem;
               font-weight: 600;
-              color:#ffff;
+              color: #ffff;
             }
             img {
-              height:2.5rem;
-              width:auto;
+              height: 2.5rem;
+              width: auto;
             }
           }
         }
@@ -196,10 +243,10 @@ div.overlay-backdrop {
         box-sizing: border-box;
 
         h3 {
-          font-family: 'Sen',sans-serif;
+          font-family: "Sen", sans-serif;
           font-size: 1rem;
           font-weight: 600;
-          color:rgba(24, 6, 48, 0.75);
+          color: rgba(24, 6, 48, 0.75);
         }
       }
     }

@@ -38,7 +38,7 @@
         </div>
 
         <div *ngIf="isEditing" class="edit-inputs-container">
-          <div *ngFor="let x of productModel;let i = index;" class="form-input-container">
+          <div *ngFor="let x of productModel" class="form-input-container">
             <div class="input">
               <mat-form-field class="example-form-field">
                 <mat-label>{{ x.title }}</mat-label>
@@ -82,13 +82,13 @@
                   matInput
                   [(ngModel)]="temp_data[x.key]"
                   [matAutocomplete]="auto"
+                  (input)="filterOptions($event,x)"
                 />
 
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option
                     *ngFor="let option of filtered_options[x.key]"
-                    [value]="option"
-                  >
+                    [value]="option">
                     {{ option }}
                   </mat-option>
                 </mat-autocomplete>
