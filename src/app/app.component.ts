@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 
 @Component({
@@ -9,4 +10,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'saavithri_admin';
   
+
+  ngOnInit()
+  {
+    const env = environment.parseConfig;
+    Parse.initialize(env.appId, env.javascriptKey, env.masterKey);
+    (Parse as any).serverURL = env.serverURL;
+  }
 }

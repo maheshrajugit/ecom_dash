@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,7 @@ import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
   imports: [
     BrowserModule,
     PagesModule,
-
+    
     AppRoutingModule,
     BrowserAnimationsModule,
  

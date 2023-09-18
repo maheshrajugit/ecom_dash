@@ -247,8 +247,18 @@ export class DashHomeComponent {
   select_nav_item(title:any, to:any)
   {
     this.selected_nav = title;
-
+    if(this.selected_nav ! = 'Logout')
     this.router.navigateByUrl('dashboard/'+to);
+  else {
+    this.logout();
+  }
+  }
+
+  logout()
+  {
+    console.log("logout");
+    
+    this.router.navigateByUrl('/login');
   }
 
 
