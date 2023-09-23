@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
+import { GalleryRef, GalleryItem, ImageItem, Gallery } from 'ng-gallery';
 
 @Component({
   selector: 'app-gallery-view',
@@ -18,16 +18,38 @@ export class GalleryViewComponent {
 
   @Input() allImages: any=[{ src: '', thumb: '' }];
 
+  constructor(private gallery: Gallery)
+  {
+
+  }
+
   ngOnInit() {
-    this.images.pop();
-    this.allImages.map((item:any)=>{
-      this.images.push(
-        new ImageItem(item)
-      );
+
+    const galleryRef = this.gallery.ref('preview-gallery');
+    galleryRef.reset();
+    this.images = this.allImages.map((item:any)=>{
+     return  new ImageItem({ src: item.src , thumb: item.thumb });
+
     })
+    galleryRef.load(this.images);
     
 
-    console.log(this.images);
+
+    
+  }
+
+  ngOnChanges()
+  {
+    console.log(this.allImages);
+  
+    const galleryRef = this.gallery.ref('preview-gallery');
+    galleryRef.reset();
+    this.images = this.allImages.map((item:any)=>{
+     return  new ImageItem({ src: item.src , thumb: item.thumb });
+
+    })
+    galleryRef.load(this.images);
+
     
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-overlay-edit-products',
@@ -45,7 +45,7 @@ export class OverlayEditProductsComponent {
     { title: 'Country', value: 'India', type: 'select', key: 'country', options: ["India", "China", "Singapore", "Malasia", "Pakistan"] },
     { title: 'Blouse Type', value: 'Unstiched blouse piece', type: 'select', key: 'blouse_type', options: ["Unstiched blouse piece", "Ready-made"] },
     { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] },
-    { title: 'Product images', value: [], type: 'image', key: 'p_images' }
+    
 
   ]
 
@@ -72,6 +72,7 @@ export class OverlayEditProductsComponent {
         this.filtered_options[x.key] = [...x.options]
       }
     });
+
     console.log(this.filtered_options);
     console.log(this.temp_data);
     if (this.formElement) {
@@ -81,19 +82,21 @@ export class OverlayEditProductsComponent {
     }
   }
 
-  ngOnChanges() {
-    console.log(this.formData);
+  ngOnChanges(sc: SimpleChanges) {
+    console.log('data ra babu',sc['formData']?.currentValue?.p_images
+    );
+    this.formData = sc['formData']?.currentValue ?? this.formData;
     this.temp_data = { ...this.formData };
-  //   if (this.formData.p_images) {
-  //     this.formData.p_images.map((x:any)=>{
-  //       this.prod_images.push({src: x.src, thumb:x.thumb})
-  //     })
-  //     this.prod_images.push(...this.formData.p_images);
-  //   }
-  //   else 
-  //   {
-  //     this.prod_images=[];
-  //   }
+    if (this.formData.p_images) {
+      this.prod_images=[];
+      this.prod_images.push(...this.formData.p_images);
+      // console.log(this.prod_images);
+      
+    }
+    else 
+    {
+      this.prod_images=[];
+    }
   }
 
   calcDiscount(e: any, key: any, idx: any = 0) {
@@ -201,7 +204,12 @@ export class OverlayEditProductsComponent {
     console.log("lol");
     let final = { ...this.temp_data };
     console.log(final);
-    final.thumb = "../../../assets/img/thumb-2.jpg";
+    // final.thumb = "../../../assets/img/thumb-2.jpg";
+    if(this.prod_images.length>0)
+    {
+      final.p_images = [...this.prod_images];
+      final.thumb = this.prod_images[0].thumb;
+    }
     if (this.formElement) {
 
       console.log("scrolling");
@@ -258,7 +266,6 @@ export class OverlayEditProductsComponent {
     let res = confirm("Are you sure?  Delete this product?");
     if(res == true)
     {
-      this.closeTheDialogue.emit('false');
       this.deleteTheProd.emit('');
       
     }

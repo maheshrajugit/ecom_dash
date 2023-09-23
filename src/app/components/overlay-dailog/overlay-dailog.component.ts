@@ -48,7 +48,7 @@ export class OverlayDailogComponent implements OnInit {
     { title: 'Country', value: 'India', type: 'select', key: 'country', options: ["India", "China", "Singapore", "Malasia", "Pakistan"] },
     { title: 'Blouse Type', value: 'Unstiched blouse piece', type: 'select', key: 'blouse_type', options: ["Unstiched blouse piece", "Ready-made"] },
     { title: 'Blouse Dimension', value: '', type: 'select', key: 'blouse_dimension', options: ["70cm x 110cm", "90cm x 200cm", "80 cm x 150cm"] },
-    { title: 'Product images', value: [], type: 'text-area', key: 'p_images' }
+    
   ]
 
   public isEditing: any = false;
@@ -187,7 +187,12 @@ export class OverlayDailogComponent implements OnInit {
     console.log("lol");
     let final = { ...this.temp_data };
     console.log(final);
-    final.thumb = "../../../assets/img/thumb-2.jpg";
+    // final.thumb = "../../../assets/img/thumb-2.jpg";
+    if(this.prod_images.length>0)
+    {
+      final.p_images = [...this.prod_images];
+      final.thumb = this.prod_images[0].thumb;
+    }
     if (this.formElement) {
 
       console.log("scrolling");
@@ -196,6 +201,7 @@ export class OverlayDailogComponent implements OnInit {
     }
 
     this.addTheProduct.emit(final);
+    this.prod_images = []
 
 
   }
@@ -232,6 +238,7 @@ export class OverlayDailogComponent implements OnInit {
 
 
     this.closeTheDialogue.emit('false');
+    this.prod_images = []
 
   }
 

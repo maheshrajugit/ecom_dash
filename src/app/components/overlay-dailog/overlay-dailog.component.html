@@ -10,7 +10,7 @@
         <div class="dialog-content">
             <div class="form-container">
                 <div *ngFor="let x of productModel" class="form-input-container">
-                    <div class="input">
+                    <div *ngIf="x.type!='image'" class="input">
                         <mat-form-field  class="example-form-field">
                             <mat-label>{{x.title}}</mat-label>
                             
@@ -37,6 +37,7 @@
                                     placeholder="Pick one"
                                     aria-label="Number"
                                     matInput
+                                    required
                                     [(ngModel)]="temp_data[x.key]"
                                     [matAutocomplete]="auto"
                                     (input)="filterOptions($event,x)"

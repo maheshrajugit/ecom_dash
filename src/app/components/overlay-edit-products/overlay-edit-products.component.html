@@ -28,10 +28,10 @@
       <div class="form-container">
         <div *ngIf="!isEditing" class="form-view-container">
           <div *ngFor="let x of productModel" class="data-container">
-            <div class="title">
+            <div *ngIf="x.title!=='Product images'" class="title">
               <span>{{ x.title }}</span>
             </div>
-            <div class="value">
+            <div *ngIf="x.title!=='Product images'" class="value">
               <span>{{ temp_data[x.key] }}</span>
             </div>
           </div>
@@ -46,7 +46,7 @@
                 <input
                   required
                   disabled="false"
-                  *ngIf="x.type != 'select' && (x.key!='price' && x.key!='b_price' && x.key!='discount')"
+                  *ngIf="x.type != 'select' && x.type!='image' && (x.key!='price' && x.key!='b_price' && x.key!='discount')"
                   matInput
                   [type]="x.type"
                   [(ngModel)]="temp_data[x.key]"
