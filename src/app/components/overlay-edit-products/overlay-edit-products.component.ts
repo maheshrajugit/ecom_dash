@@ -73,18 +73,17 @@ export class OverlayEditProductsComponent {
       }
     });
 
-    console.log(this.filtered_options);
-    console.log(this.temp_data);
+    // console.log(this.filtered_options);
+    // console.log(this.temp_data);
     if (this.formElement) {
-      console.log("scrolling");
+      // console.log("scrolling");
 
       this.formElement.nativeElement.scrollTop = 0;
     }
   }
 
   ngOnChanges(sc: SimpleChanges) {
-    console.log('data ra babu',sc['formData']?.currentValue?.p_images
-    );
+    // console.log('data ra babu',sc['formData']?.currentValue?.p_images);
     this.formData = sc['formData']?.currentValue ?? this.formData;
     this.temp_data = { ...this.formData };
     if (this.formData.p_images) {
@@ -101,9 +100,9 @@ export class OverlayEditProductsComponent {
 
   calcDiscount(e: any, key: any, idx: any = 0) {
 
-    console.log(e);
+  
 
-    console.log('lol', e.target.value);
+
     if (key == 'discount') {
       if (this.temp_data['price'] != '')
         this.temp_data['b_price'] = Math.round(parseInt(this.temp_data['price']) / (1 - parseInt(this.temp_data['discount']) / 100));
@@ -114,7 +113,7 @@ export class OverlayEditProductsComponent {
     else {
       this.temp_data['discount'] = Math.round((1 - (parseInt(this.temp_data['price']) / parseInt(this.temp_data['b_price']))) * 100);
     }
-    console.log("vals", this.temp_data['discount'], this.temp_data['price'], this.temp_data['b_price']);
+    // console.log("vals", this.temp_data['discount'], this.temp_data['price'], this.temp_data['b_price']);
   }
 
   triggerFileInput() {
@@ -127,15 +126,15 @@ export class OverlayEditProductsComponent {
 
   filterOptions(e: any, item: any) {
     let string = e.target.value;
-    console.log(string, item, this.temp_data);
+   
     this.filtered_options[item.key] = [];
     item.options.map((val: any) => {
       let l = val.toLowerCase();
       if (l.includes(string.toLowerCase())) {
-        console.log("check", val, string);
+       
 
         this.filtered_options[item.key].push(val);
-        console.log(this.filtered_options);
+        // console.log(this.filtered_options);
 
       }
       else {
@@ -164,12 +163,12 @@ export class OverlayEditProductsComponent {
 
         for (let i = 0; i < selectedFiles.length; i++) {
           const file = selectedFiles[i];
-          console.log(`Selected file ${i + 1}: ${file.name}`, file);
+          // console.log(`Selected file ${i + 1}: ${file.name}`, file);
           this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file) })
           // You can perform further actions with each selected file here
         }
         this.temp_data.p_images =[...this.prod_images] ;
-        console.log("here",this.prod_images);
+       
         
       }
     }
@@ -200,8 +199,7 @@ export class OverlayEditProductsComponent {
   }
 
   save_product(p: any = undefined) {
-    console.log(this.temp_data);
-    console.log("lol");
+   
     let final = { ...this.temp_data };
     console.log(final);
     // final.thumb = "../../../assets/img/thumb-2.jpg";
@@ -212,7 +210,7 @@ export class OverlayEditProductsComponent {
     }
     if (this.formElement) {
 
-      console.log("scrolling");
+   
 
       this.formElement.nativeElement.scrollTop = 0;
     }
@@ -234,7 +232,7 @@ export class OverlayEditProductsComponent {
 
 
   detectCloseDialogue(e: any = undefined) {
-    console.log("detecting");
+
 
     if (e != undefined) {
       let cList = [...e.target.classList];
@@ -251,7 +249,7 @@ export class OverlayEditProductsComponent {
   closeDialogue(type: any = undefined) {
 
     if (this.formElement) {
-      console.log("scrolling");
+      
 
       this.formElement.nativeElement.scrollTop = 0;
     }

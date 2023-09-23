@@ -40,7 +40,7 @@ export class GalleryViewComponent {
 
   ngOnChanges()
   {
-    console.log(this.allImages);
+    // console.log(this.allImages);
   
     const galleryRef = this.gallery.ref('preview-gallery');
     galleryRef.reset();
