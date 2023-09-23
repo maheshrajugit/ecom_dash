@@ -158,6 +158,29 @@ export class InventoryComponent {
     this.isEditProductOpen = 'true';
   }
 
+  addProduct(prod: any) {
+
+    // console.log(prod);
+    let products = [...this.products]
+    products.push(prod);
+    this.products = [...products];
+    this.allProducts = [...products];
+    this.length = this.products.length;
+    console.log(products, this.products);
+
+    this.parse.saveObject('inventory',prod).then((data:any)=>{
+      console.log(data);
+      
+    }).catch((err:any)=>{
+      console.log(err);
+      
+    });
+
+    this.closeDialog('false');
+  
+  
+  }
+
   saveProduct(data:any)
   {
     let prods = [...this.products];
@@ -167,15 +190,42 @@ export class InventoryComponent {
     this.products = [...prods];
     console.log(this.products);
     
+    this.parse.updateObject('inventory',data).then((data:any)=>{
+      console.log(data);
+      this.getAllProducts();
+    }).catch((err:any)=>{
+      console.log(err);
+      
+    });
+
     this.isEditProductOpen =false;
     
   }
 
+  saveAsNew(dataObj:any)
+  {
+    this.parse.saveObject('inventory',dataObj).then((data:any)=>{
+      console.log("new added",data);
+      
+    }).catch((err:any)=>{
+      console.log(err);
+      
+    });
+
+    this.isEditProductOpen =false;
+    this.getAllProducts();
+  }
+
+ 
   deleteProduct(data:any)
   {
     this.isEditProductOpen = false;
     this.products.splice(this.editProdIndex,1);
     this.length = this.products.length;
+
+    this.parse.deleteObject('inventory',data).then((d:any)=>{
+      
+    })
 
   }
 
@@ -215,6 +265,27 @@ export class InventoryComponent {
 
     this.tempProductModel = [...this.fullProductModel];
 
+    this.getAllProducts();
+    
+
+  }
+
+  getAllProducts()
+  {
+    this.parse.getData('inventory',100).then((data:any)=>{
+      console.log(data);
+      let products:any = [];
+      data.map((product:any)=>{
+        products.push({id:product.id, ...product.attributes});
+      })
+      this.products = [...products];
+      this.allProducts = [...products];
+      this.length = this.allProducts.length;
+      
+    }).catch((err:any)=>{
+      console.log(err);
+      
+    });
   }
 
   filterOptions(e: any, item: any) {
@@ -302,28 +373,7 @@ export class InventoryComponent {
     }
   }
 
-  addProduct(prod: any) {
-    console.log("llll");
-    console.log(prod);
-    let products = [...this.products]
-    products.push(prod);
-    this.products = [...products];
-    this.allProducts = [...products];
-    this.length = this.products.length;
-    console.log(products, this.products);
 
-    this.parse.saveObject('inventory',prod).then((data:any)=>{
-      console.log(data);
-      
-    }).catch((err:any)=>{
-      console.log(err);
-      
-    });
-
-    this.closeDialog('false');
-  
-  
-  }
   handlePageEvent(e: PageEvent) {
 
     console.log(e);

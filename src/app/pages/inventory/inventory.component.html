@@ -9,6 +9,7 @@
   [isOpen]="isEditProductOpen"
   [formData]="selected_product"
     (saveTheProduct)="saveProduct($event)"
+    (saveAsNewProduct)="saveAsNew($event)"
     (deleteTheProd)="deleteProduct($event)"
     (closeTheDialogue)="closeEditDialog($event)"
   >

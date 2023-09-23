@@ -15,6 +15,7 @@ export class OverlayEditProductsComponent {
   @Output() deleteTheProd = new EventEmitter<any>();
 
   @Output() saveTheProduct = new EventEmitter<any>();
+  @Output() saveAsNewProduct = new EventEmitter<any>();
 
 
 
@@ -98,6 +99,27 @@ export class OverlayEditProductsComponent {
     }
   }
 
+
+  
+  editForm() {
+    this.isEditing = !this.isEditing;
+    if(this.isEditing == false)
+    {
+      this.temp_data = {...this.formData }
+    }
+  }
+
+
+  resetForm() {
+    console.log('reset', this.productModel);
+    this.prod_images = [];
+    this.productModel.map((x: any) => {
+
+      this.temp_data[x.key] = '';
+    });
+
+  }
+
   calcDiscount(e: any, key: any, idx: any = 0) {
 
   
@@ -179,24 +201,6 @@ export class OverlayEditProductsComponent {
   }
 
 
-  editForm() {
-    this.isEditing = !this.isEditing;
-    if(this.isEditing == false)
-    {
-      this.temp_data = {...this.formData }
-    }
-  }
-
-
-  resetForm() {
-    console.log('reset', this.productModel);
-    this.prod_images = [];
-    this.productModel.map((x: any) => {
-
-      this.temp_data[x.key] = '';
-    });
-
-  }
 
   save_product(p: any = undefined) {
    
@@ -209,14 +213,29 @@ export class OverlayEditProductsComponent {
       final.thumb = this.prod_images[0].thumb;
     }
     if (this.formElement) {
-
-   
-
       this.formElement.nativeElement.scrollTop = 0;
     }
     this.prod_images = [];
     this.editForm();
     this.saveTheProduct.emit(final);
+
+
+  }
+
+  saveAsNew()
+  {
+    let final = { ...this.temp_data };
+    delete final["id"];
+    // final.thumb = "../../../assets/img/thumb-2.jpg";
+    if(this.prod_images.length>0)
+    {
+      final.p_images = [...this.prod_images];
+      final.thumb = this.prod_images[0].thumb;
+    }
+
+    this.prod_images= [];
+    this.editForm();
+    this.saveAsNewProduct.emit(final);
 
 
   }
@@ -264,7 +283,7 @@ export class OverlayEditProductsComponent {
     let res = confirm("Are you sure?  Delete this product?");
     if(res == true)
     {
-      this.deleteTheProd.emit('');
+      this.deleteTheProd.emit(this.temp_data);
       
     }
     else 

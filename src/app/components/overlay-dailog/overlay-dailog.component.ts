@@ -75,13 +75,13 @@ export class OverlayDailogComponent implements OnInit {
       }
     });
 
-    console.log(this.filtered_options);
+    // console.log(this.filtered_options);
 
-    console.log(this.temp_data);
+    // console.log(this.temp_data);
 
 
     if (this.formElement) {
-      console.log("scrolling");
+    
 
       this.formElement.nativeElement.scrollTop = 0;
     }
@@ -93,9 +93,7 @@ export class OverlayDailogComponent implements OnInit {
 
   calcDiscount(e: any, key: any, idx: any = 0) {
 
-    console.log(e);
-
-    console.log('lol', e.target.value);
+   
     if (key == 'discount') {
       if (this.temp_data['price'] != '')
         this.temp_data['b_price'] = Math.round(parseInt(this.temp_data['price']) / (1 - parseInt(this.temp_data['discount']) / 100));
@@ -106,7 +104,7 @@ export class OverlayDailogComponent implements OnInit {
     else {
       this.temp_data['discount'] = Math.round((1 - (parseInt(this.temp_data['price']) / parseInt(this.temp_data['b_price']))) * 100);
     }
-    console.log("vals", this.temp_data['discount'], this.temp_data['price'], this.temp_data['b_price']);
+    
   }
 
 
@@ -120,15 +118,15 @@ export class OverlayDailogComponent implements OnInit {
 
   filterOptions(e: any, item: any) {
     let string = e.target.value;
-    console.log(string, item, this.temp_data);
+
     this.filtered_options[item.key] = [];
     item.options.map((val: any) => {
       let l = val.toLowerCase();
       if (l.includes(string.toLowerCase())) {
-        console.log("check", val, string);
+  
 
         this.filtered_options[item.key].push(val);
-        console.log(this.filtered_options);
+        // console.log(this.filtered_options);
 
       }
       else {
@@ -157,7 +155,7 @@ export class OverlayDailogComponent implements OnInit {
 
         for (let i = 0; i < selectedFiles.length; i++) {
           const file = selectedFiles[i];
-          console.log(`Selected file ${i + 1}: ${file.name}`, file);
+          // console.log(`Selected file ${i + 1}: ${file.name}`, file);
           this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file) })
           this.temp_data.thumb = URL.createObjectURL(file);
           // You can perform further actions with each selected file here
@@ -173,7 +171,7 @@ export class OverlayDailogComponent implements OnInit {
 
 
   resetForm() {
-    console.log('reset', this.productModel);
+
     this.prod_images = [];
     this.productModel.map((x: any) => {
 
@@ -183,10 +181,10 @@ export class OverlayDailogComponent implements OnInit {
   }
 
   add_product(p: any = undefined) {
-    console.log(this.temp_data);
-    console.log("lol");
+  
+ 
     let final = { ...this.temp_data };
-    console.log(final);
+    // console.log(final);
     // final.thumb = "../../../assets/img/thumb-2.jpg";
     if(this.prod_images.length>0)
     {
@@ -195,7 +193,7 @@ export class OverlayDailogComponent implements OnInit {
     }
     if (this.formElement) {
 
-      console.log("scrolling");
+      
 
       this.formElement.nativeElement.scrollTop = 0;
     }
@@ -215,7 +213,7 @@ export class OverlayDailogComponent implements OnInit {
 
 
   detectCloseDialogue(e: any = undefined) {
-    console.log("detecting");
+    
 
     if (e != undefined) {
       let cList = [...e.target.classList];
@@ -231,7 +229,7 @@ export class OverlayDailogComponent implements OnInit {
   closeDialogue(type: any = undefined) {
 
     if (this.formElement) {
-      console.log("scrolling");
+     
 
       this.formElement.nativeElement.scrollTop = 0;
     }

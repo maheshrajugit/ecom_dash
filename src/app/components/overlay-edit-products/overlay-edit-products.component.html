@@ -11,6 +11,14 @@
   >
     <div class="dialog-heading">
       <span class="h3">Product</span>
+      <span (click)="saveAsNew()" *ngIf="isEditing" class="h6 save">
+        <i>
+
+        </i>
+        <span>
+          Save as New
+        </span>
+      </span>
       <span (click)="editForm()" class="h6">
         <i>
           <img
@@ -112,6 +120,18 @@
           <div (click)="triggerFileInput()" class="icon-container">
             <span>Add Product Images :</span>
             <img src="../../../assets/add-image-icon.svg" alt="" />
+          </div>
+        </div>
+        <div class="p_images-container">
+          <div  class="p_image">
+            <div class="del-icon-container">
+              <div class="del-icon">
+                x
+              </div>
+            </div>
+            <div class="image-thumb">
+              <img src="" alt="">
+            </div>
           </div>
         </div>
       </div>

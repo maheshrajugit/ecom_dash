@@ -23,6 +23,40 @@ async saveObject(className:any,dataObj:any)
   return await classname.save(dataObj);
 }
 
+async updateObject(className:any,dataObj:any)
+{
+  const Classname = Parse.Object.extend(className);
+  const classname = new Classname();
+
+  const query = new Parse.Query(Classname);
+  let obj = await query.get(dataObj.id)
+  return await obj.save(dataObj);
+
+  
+}
+
+async deleteObject(className:any,dataObj:any)
+{
+  const Classname = Parse.Object.extend(className);
+  const classname = new Classname();
+
+  const query = new Parse.Query(Classname);
+  let obj = await query.get(dataObj.id)
+  return await obj.destroy();
+}
+
+async getData(className:any,limit:any=50)
+{
+  const Classname = Parse.Object.extend(className);
+  const query = new Parse.Query(Classname);
+  query.limit(limit);
+  query.descending("updatedAt");
+  return await query.find();
+
+}
+
+
+
 async login(loginCred: any) {
   try {
     // var password = CryptoJS.AES.decrypt(loginCred.password, environment.authClientKey).toString(CryptoJS.enc.Utf8);

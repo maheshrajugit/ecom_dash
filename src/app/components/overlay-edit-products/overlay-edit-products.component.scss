@@ -65,7 +65,7 @@ div.overlay-backdrop {
       > span.h3 {
         font-size: 1.25rem;
         font-weight: 700;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         color: #9d50bb;
       }
@@ -97,6 +97,38 @@ div.overlay-backdrop {
         text-decoration: underline;
         font-size: 1rem;
         font-weight: 500;
+        margin-top: 1.5rem;
+      }
+      > span.h6.save {
+        margin: 0;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 1.5rem;
+        color:#9d50bb;
+        i {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 0.5rem;
+        
+          img {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+      }
+      > span.h6.save:hover {
+        display: flex;
+        align-items: center;
+        color: #009c41;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: 1rem;
+        font-weight: 700;
         margin-top: 1.5rem;
       }
     }
