@@ -77,7 +77,7 @@ export class TableComponent {
     let f = date.toLocaleString().split(",");
     let final = f[0]+"<br/>"+f[1];
  
-    console.log(final);
+    // console.log(final);
     
     return final;
   }

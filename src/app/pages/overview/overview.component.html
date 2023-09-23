@@ -115,7 +115,7 @@
     </div>
     <div class="col-1-container">
         <div class="quick-overview-cards">
-            <div [style]="'background:'+q.bgColor" *ngFor="let q of quickCards" class="quick-overview-card">
+            <div (click)="select_quick_card(q)" [style]="'background:'+q.bgColor" *ngFor="let q of quickCards" class="quick-overview-card">
                 <div class="left">
                     <div class="icon-holder">
                         <img [src]="q.icon" alt="icon">

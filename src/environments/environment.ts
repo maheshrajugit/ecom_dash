@@ -13,7 +13,8 @@ export const environment = {
     serverURL: "https://api.saavithri.in/parse",
     appId: "sAfxeXuBGsKlM3HfDj9vjnQfUeVPcEWDz5ULlM89ZFu0FtMk0uasfZf0ze8mMJba",
     masterKey: "LhSLodx4p8ZghE1MbBzhENZEOucN4aR6zteHFiWc7SVYZUR2lB2ZdprUbSbNZEiI",
-    javascriptKey: "Dq4IAQJzpZvyztbHZUpMf0M8mL01xPYDchxwSwyETs46ifGQLqxUziuebZ4YzZna"
+    javascriptKey: "Dq4IAQJzpZvyztbHZUpMf0M8mL01xPYDchxwSwyETs46ifGQLqxUziuebZ4YzZna",
+    restApiKey:"zgnrCnpI1F7Zl2wpS7B7utR33cdXgR9FjZXkMukNDu7rvhuC"
   },
 
   authClientKey: "zgnrCnpI1F7Zl2wpS7B7utR33cdXgR9FjZXkMukNDu7rvhuC",

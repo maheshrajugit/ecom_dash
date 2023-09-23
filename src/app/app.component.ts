@@ -13,8 +13,5 @@ export class AppComponent {
 
   ngOnInit()
   {
-    const env = environment.parseConfig;
-    Parse.initialize(env.appId, env.javascriptKey, env.masterKey);
-    (Parse as any).serverURL = env.serverURL;
   }
 }

@@ -23,15 +23,12 @@ export class LoginPortalComponent {
 
   login()
   {
-    // this.parse.signUp().then((d:any)=>{
-    //   console.log(d);
-      
-    // }).catch((err:any)=>{
-    //   console.log(err);
-      
-    // };)
-    this.parse.login({username : "admin@gmail.com", password: "admin"}).then((d:any)=>{
-      console.log(d);
+    this.parse.login({username : this.username, password: this.password}).then((user:any)=>{
+      console.log(user);
+      if(user.id)
+      {
+        this.router.navigateByUrl("/dashboard/home")
+      }
       
     }).catch((err:any)=>{
       console.log(err);

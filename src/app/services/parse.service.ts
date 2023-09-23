@@ -26,7 +26,7 @@ async login(loginCred: any) {
         access = data;
       })
     }
-    return access;
+    return user;
   }
   catch (err: any) {
     console.log(err.message);
@@ -50,6 +50,12 @@ try {
   // Show the error message somewhere and let the user try again.
   alert("Error: " + error.code + " " + error.message);
 }
+}
+
+async logout()
+{
+  return await Parse.User.logOut();
+
 }
 
 async getUserRole(user: any = null) {
@@ -77,5 +83,7 @@ async getUserRole(user: any = null) {
     return false;
   }
 }
+
+
 
 }

@@ -1,11 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
-
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 
 @Component({
@@ -17,7 +12,7 @@ interface Food {
 
 export class OverviewComponent {
 
-
+  @Output() changePage = new EventEmitter<any>();
 
   public statList:any = [
     {icon:"../../../assets/sales-stat.svg",name:"Total Sales", value:"₹ 2,43,560", avg:7.15, gradient:'linear-gradient(180deg, #9d50bb 0%, #6e48aa 100%)'},
@@ -29,6 +24,7 @@ export class OverviewComponent {
     {
       icon:"../../../assets/quick-inventory.svg",
       title:"inventory",
+      to:'inventory',
       bgColor:"linear-gradient(180deg, #0f0c29 0%, #302b63 100%)",
       info: [
         {title:"products",value:"1760"},
@@ -64,7 +60,7 @@ export class OverviewComponent {
   ]
 
 
-  constructor()
+  constructor(private router:Router)
   {
 
 
@@ -73,6 +69,16 @@ export class OverviewComponent {
   ngOnInit()
   {
 
+  }
+  select_quick_card(q:any)
+  {
+    console.log(q);
+    
+    if(q.to)
+    {
+      this.router.navigateByUrl("/dashboard/"+q.to);
+      this.changePage.emit(q);
+    }
   }
 
   printPage()

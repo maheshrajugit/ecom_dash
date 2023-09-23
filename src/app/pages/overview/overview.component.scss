@@ -339,6 +339,7 @@ div.overview-main {
         justify-content: flex-start;
         padding:1rem;
         > div.quick-overview-card {
+          cursor:pointer;
             margin:1rem .75rem;
           display: flex;
           flex-direction: row;
