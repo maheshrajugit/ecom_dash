@@ -15,6 +15,14 @@ export class ParseService {
     
 }
 
+async saveObject(className:any,dataObj:any)
+{
+  const Classname = Parse.Object.extend(className);
+  const classname = new Classname();
+  
+  return await classname.save(dataObj);
+}
+
 async login(loginCred: any) {
   try {
     // var password = CryptoJS.AES.decrypt(loginCred.password, environment.authClientKey).toString(CryptoJS.enc.Utf8);

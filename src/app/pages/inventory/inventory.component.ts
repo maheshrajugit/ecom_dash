@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ParseService } from 'src/app/services/parse.service';
 
 @Component({
   selector: 'app-inventory',
@@ -125,7 +126,7 @@ export class InventoryComponent {
   public pageSize: any = 10;
   public pageSizeOptions: any = [5, 10, 25, 100];
 
-  constructor() {
+  constructor(private parse:ParseService) {
     // this.products.push(this.productModel);
     this.allProducts = [...this.products];
     this.length = this.allProducts.length;
@@ -310,7 +311,18 @@ export class InventoryComponent {
     this.allProducts = [...products];
     this.length = this.products.length;
     console.log(products, this.products);
+
+    this.parse.saveObject('inventory',prod).then((data:any)=>{
+      console.log(data);
+      
+    }).catch((err:any)=>{
+      console.log(err);
+      
+    });
+
     this.closeDialog('false');
+  
+  
   }
   handlePageEvent(e: PageEvent) {
 

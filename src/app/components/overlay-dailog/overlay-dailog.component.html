@@ -45,7 +45,8 @@
                                     
                                         <mat-autocomplete  #auto="matAutocomplete">
                                             <mat-option *ngFor="let option of filtered_options[x.key]" [value]="option">
-                                                {{option}}
+                                                <span *ngIf="x.key=='color'" [style]="'color:'+option+';textShadow:1px 1px 3px rgba(0,0,0,.6)'">{{option}}</span>
+                                                <span *ngIf="x.key!='color'">{{option}}</span>
                                             </mat-option>
                                         </mat-autocomplete>
 
