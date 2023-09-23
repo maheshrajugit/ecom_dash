@@ -281,6 +281,7 @@ div.overlay-backdrop {
           margin: 0 0.25rem;
           cursor: pointer;
         }
+     
         > div.action-btn:nth-child(1) {
           padding: 0.5rem;
           background-color: #c7c7c7;
@@ -301,6 +302,14 @@ div.overlay-backdrop {
           color: white;
           border-radius: 0.25rem;
           box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.2);
+        }
+        >div.action-btn.delete {
+          padding: 0.5rem;
+          background-color: #f36960;
+          color: #fff;
+          border-radius: 0.25rem;
+          box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.2);
+
         }
       }
     }

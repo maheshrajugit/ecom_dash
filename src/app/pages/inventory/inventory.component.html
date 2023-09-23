@@ -9,6 +9,7 @@
   [isOpen]="isEditProductOpen"
   [formData]="selected_product"
     (saveTheProduct)="saveProduct($event)"
+    (deleteTheProd)="deleteProduct($event)"
     (closeTheDialogue)="closeEditDialog($event)"
   >
 
@@ -161,7 +162,7 @@
       </div>
 
       <div class="table-body">
-        <table>
+        <table *ngIf="length>0">
           <tbody>
             <tr>
               <th>id</th>
@@ -212,9 +213,13 @@
                 </span>
               </td>
             </tr>
-            <tr></tr>
+            
           </tbody>
         </table>
+        <div class="empty" *ngIf="length==0">
+          <iframe src="https://lottie.host/?file=4d348bde-596a-4f4d-a233-43d7ea44a904/Us30SKrlTh.json"></iframe>
+          <span> Your Inventory is Empty. <i (click)="openDialog()">Add Products</i></span>
+        </div>
         <mat-paginator
           [length]="length"
           [pageSize]="pageSize"

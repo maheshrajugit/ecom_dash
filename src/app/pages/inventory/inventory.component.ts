@@ -74,6 +74,7 @@ export class InventoryComponent {
     country: 'India',
     stock: 30,
     alert: 4,
+    p_images:[]
 
   }
 
@@ -125,7 +126,7 @@ export class InventoryComponent {
   public pageSizeOptions: any = [5, 10, 25, 100];
 
   constructor() {
-    this.products.push(this.productModel);
+    // this.products.push(this.productModel);
     this.allProducts = [...this.products];
     this.length = this.allProducts.length;
     // this.tempProductModel = [...this.fullProductModel];
@@ -167,6 +168,14 @@ export class InventoryComponent {
     
     this.isEditProductOpen =false;
     
+  }
+
+  deleteProduct(data:any)
+  {
+    this.isEditProductOpen = false;
+    this.products.splice(this.editProdIndex,1);
+    this.length = this.products.length;
+
   }
 
   closeEditDialog(e: any = "false") {

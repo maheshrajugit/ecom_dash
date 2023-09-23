@@ -12,6 +12,7 @@ export class OverlayEditProductsComponent {
   @Input() isOpen: any = 'false';
   @Input() formData: any = {};
   @Output() closeTheDialogue = new EventEmitter<any>();
+  @Output() deleteTheProd = new EventEmitter<any>();
 
   @Output() saveTheProduct = new EventEmitter<any>();
 
@@ -71,27 +72,18 @@ export class OverlayEditProductsComponent {
         this.filtered_options[x.key] = [...x.options]
       }
     });
-
     console.log(this.filtered_options);
-
     console.log(this.temp_data);
-
-
-
     if (this.formElement) {
       console.log("scrolling");
 
       this.formElement.nativeElement.scrollTop = 0;
     }
-
-
-
-
   }
 
-  // ngOnChanges() {
-  //   console.log(this.formData);
-  //   this.temp_data = { ...this.formData };
+  ngOnChanges() {
+    console.log(this.formData);
+    this.temp_data = { ...this.formData };
   //   if (this.formData.p_images) {
   //     this.formData.p_images.map((x:any)=>{
   //       this.prod_images.push({src: x.src, thumb:x.thumb})
@@ -102,7 +94,7 @@ export class OverlayEditProductsComponent {
   //   {
   //     this.prod_images=[];
   //   }
-  // }
+  }
 
   calcDiscount(e: any, key: any, idx: any = 0) {
 
@@ -187,6 +179,10 @@ export class OverlayEditProductsComponent {
 
   editForm() {
     this.isEditing = !this.isEditing;
+    if(this.isEditing == false)
+    {
+      this.temp_data = {...this.formData }
+    }
   }
 
 
@@ -255,6 +251,21 @@ export class OverlayEditProductsComponent {
     this.isEditing = false;
     this.closeTheDialogue.emit('false');
 
+  }
+
+  delete_prod()
+  {
+    let res = confirm("Are you sure?  Delete this product?");
+    if(res == true)
+    {
+      this.closeTheDialogue.emit('false');
+      this.deleteTheProd.emit('');
+      
+    }
+    else 
+    {
+
+    }
   }
 
 

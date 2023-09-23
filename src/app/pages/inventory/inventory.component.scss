@@ -1,7 +1,6 @@
-.green
-{
-    background-color: #009c41;
-    color:white;
+.green {
+  background-color: #009c41;
+  color: white;
 }
 
 div.inventory-main {
@@ -15,7 +14,7 @@ div.inventory-main {
   > div.overview-main {
     width: 100%;
     box-sizing: border-box;
-    
+
     div.heading {
       font-family: "Sen", san-serif;
       > h3 {
@@ -67,15 +66,15 @@ div.inventory-main {
             > img {
               width: 1.5rem;
               height: 1.5rem;
-              animation-name: spin ;
-              animation-duration: 500ms ;
+              animation-name: spin;
+              animation-duration: 500ms;
             }
 
             @keyframes spin {
-              0%{
+              0% {
                 transform: rotate(0deg);
               }
-              100%{
+              100% {
                 transform: rotate(360deg);
               }
             }
@@ -127,88 +126,81 @@ div.inventory-main {
       }
     }
 
-    >div.all-filters-container {
-      width:100%;
+    > div.all-filters-container {
+      width: 100%;
       box-sizing: border-box;
 
-  >div.form-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width:100%;
-    background-color: transparent;
-    border-radius: 1rem 1rem;
-    box-sizing: border-box;
-    align-items: center;
-    padding:1rem;
-   
-    >div.form-input-container {
-      display: flex;
+      > div.form-list {
+        display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        background-color: transparent;
+        border-radius: 1rem 1rem;
+        box-sizing: border-box;
         align-items: center;
-      >div.input {
-        
-        span.hint {
-         padding:1rem;
-         color:#180630;
-         font-family: 'Sen',sans-serif;
-         font-size: .875rem;
-         font-weight: 600;
-         cursor: pointer;
+        padding: 1rem;
 
-        }
-
-          
-        span.hint:hover {
-          padding:1rem;
-          color:#180630;
-          text-decoration: underline;
-          font-family: 'Sen',sans-serif;
-          font-size: .875rem;
-          font-weight: 600;
- 
-         }
-        span.hint.red {
-         padding:1rem;
-         color:#F36960;
-         font-family: 'Sen',sans-serif;
-         font-size: .875rem;
-         font-weight: 600;
-         cursor: pointer;
-
-        }
-
-          
-        span.hint.red:hover {
-          padding:1rem;
-          color:#F36960;
-          text-decoration: underline;
-          font-family: 'Sen',sans-serif;
-          font-size: .875rem;
-          font-weight: 600;
- 
-         }
-        >mat-form-field.example-form-field {
-          >mat-label {
-          }
-          >input:nth-of-type(1) {
-          }
-          >span {
-            >img {
+        > div.form-input-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          > div.input {
+            span.hint {
+              padding: 1rem;
+              color: #180630;
+              font-family: "Sen", sans-serif;
+              font-size: 0.875rem;
+              font-weight: 600;
+              cursor: pointer;
             }
-          }
-          >input:nth-of-type(2) {
-          }
-          >mat-autocomplete {
-            >mat-option {
+
+            span.hint:hover {
+              padding: 1rem;
+              color: #180630;
+              text-decoration: underline;
+              font-family: "Sen", sans-serif;
+              font-size: 0.875rem;
+              font-weight: 600;
+            }
+            span.hint.red {
+              padding: 1rem;
+              color: #f36960;
+              font-family: "Sen", sans-serif;
+              font-size: 0.875rem;
+              font-weight: 600;
+              cursor: pointer;
+            }
+
+            span.hint.red:hover {
+              padding: 1rem;
+              color: #f36960;
+              text-decoration: underline;
+              font-family: "Sen", sans-serif;
+              font-size: 0.875rem;
+              font-weight: 600;
+            }
+            > mat-form-field.example-form-field {
+              > mat-label {
+              }
+              > input:nth-of-type(1) {
+              }
+              > span {
+                > img {
+                }
+              }
+              > input:nth-of-type(2) {
+              }
+              > mat-autocomplete {
+                > mat-option {
+                }
+              }
             }
           }
         }
       }
     }
-  }
-}
   }
   > div.all-products-container {
     width: 100%;
@@ -255,11 +247,8 @@ div.inventory-main {
             justify-content: center;
 
             select {
-                
-               
               > option {
-                font-size: .875rem;
-                
+                font-size: 0.875rem;
               }
             }
           }
@@ -313,12 +302,10 @@ div.inventory-main {
           > div.action-btn.filter.opened {
             background-color: #180630;
             color: #fff;
-            
+
             > div.icon.opened {
-              
               transform: rotate(180deg);
               > img {
-                
               }
             }
             > div.btn-name {
@@ -335,7 +322,6 @@ div.inventory-main {
           box-sizing: border-box;
           > tbody {
             > tr {
-              
               > th {
                 padding: 0.5rem;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -343,21 +329,19 @@ div.inventory-main {
                 text-transform: capitalize;
                 border-radius: 4px;
                 box-sizing: border-box;
-             
+
                 span {
                   box-sizing: border-box;
                   div {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-                 
-
-                }
+                  }
                 }
               }
             }
             > tr {
-              width:100%;
+              width: 100%;
               > td {
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                 padding: 0.5rem;
@@ -365,7 +349,7 @@ div.inventory-main {
                 text-align: left;
                 text-transform: capitalize;
                 span.thumbnail-holder {
-                    box-shadow: 0px 2px 4px rgba(0,0,0,.6);
+                  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
                   img {
                     width: 3rem;
                     height: calc(3rem * 4 / 3);
@@ -381,6 +365,29 @@ div.inventory-main {
             > tr:nth-child(1):hover {
               cursor: pointer;
               background-color: #edeaff;
+            }
+          }
+        }
+
+        .empty {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          // justify-content: center;
+          iframe {
+            border: none;
+            outline: none;
+          }
+
+          span {
+            i{
+              text-decoration: underline;
+            } 
+
+            i:hover 
+            {
+              cursor: pointer;
+              color: #009c41;
             }
           }
         }

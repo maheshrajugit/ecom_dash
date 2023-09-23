@@ -21,7 +21,7 @@
             "
           />
         </i>
-        <span [innerText]="isEditing ? 'Exit Editor' : 'Edit'">Edit</span>
+        <span [innerText]="isEditing ? ' Reset & Exit' : 'Edit'">Edit</span>
       </span>
     </div>
     <div class="dialog-content">
@@ -134,10 +134,12 @@
         </div>
       </div>
       <div class="action-btns">
+        
         <div (click)="closeDialogue()" class="action-btn">Cancel</div>
         <div *ngIf="isEditing" (click)="save_product()" class="action-btn">
           Save Changes
         </div>
+        <div (click)="delete_prod()" class="action-btn delete"> Delete </div>
       </div>
     </div>
   </div>
