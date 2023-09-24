@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavStateService } from 'src/app/services/nav-state.service';
 import { ParseService } from 'src/app/services/parse.service';
@@ -13,6 +13,7 @@ export class DashHomeComponent {
   panelOpenState = false;
 
   public selected_nav: any = 'dashboard';
+  public subPage:any = '';
   public DashnavItems: any = [
     {
       icon: '../assets/home-icon',
@@ -25,11 +26,11 @@ export class DashHomeComponent {
       to: 'sitemanagement',
       childs: [
 
+        { title: "Pages", to: "" },
         { title: "banner ads", to: "banners" },
         { title: "shopping categories", to: "categories" },
         { title: "collections", to: "collections" },
         { title: "Filters", to: "filters" },
-        { title: "Pages", to: "pages" },
       ]
     },
     {
@@ -37,8 +38,8 @@ export class DashHomeComponent {
       title: "manage users",
       to: 'users',
       childs: [
-        { title: "Staff", to: "staff" },
-        { title: "Customers", to: "customers" }
+        { title: "Customers", to: "" },
+        { title: "Staff", to: "staff" }
       ]
     },
   ];
@@ -51,24 +52,22 @@ export class DashHomeComponent {
 
       childs: [
 
-        { title: "All Products", to: "allproducts" },
+        { title: "All Products", to: "" },
         { title: "Product varients", to: "groups" },
-        { title: "Product Specs", to: "groups" },
+        { title: "Product Specs", to: "specs" },
         { title: "Warehouses", to: "warehouses" },
-        { title: "Special sales", to: "warehouses" },
+        { title: "Special sales", to: "special" },
       ]
     },
     {
       icon: '../assets/sales-icon',
       title: "Orders / Sales",
-      to: 'sitemanagement',
+      to: 'orders',
       childs: [
 
-        { title: "banner ads", to: "banners" },
-        { title: "shopping categories", to: "categories" },
-        { title: "collections", to: "collections" },
-        { title: "Filters", to: "filters" },
-        { title: "Pages", to: "pages" },
+        { title: "Orders", to: "" },
+        { title: "Sales Analytics", to: "sales" },
+       
       ]
     },
     {
@@ -133,8 +132,8 @@ export class DashHomeComponent {
       title: "Send Email",
       to: 'email',
       childs: [
-        { title: "Staff", to: "staff" },
-        { title: "Customers", to: "customers" }
+        { title: "Customers", to: "''" },
+        { title: "Staff", to: "staff" }
       ]
     },
     {
@@ -143,21 +142,15 @@ export class DashHomeComponent {
       to: 'whatsapp',
       childs: [
 
-        { title: "banner ads", to: "banners" },
-        { title: "shopping categories", to: "categories" },
-        { title: "collections", to: "collections" },
-        { title: "Filters", to: "filters" },
-        { title: "Pages", to: "pages" },
+        { title: "chats", to: "" },
+        { title: "Notify users", to: "notify" }
       ]
     },
     {
       icon: '../assets/transaction-icon',
       title: "Transactions",
       to: 'transactions',
-      childs: [
-        { title: "Staff", to: "staff" },
-        { title: "Customers", to: "customers" }
-      ]
+     
     },
   ];
 
@@ -187,17 +180,25 @@ export class DashHomeComponent {
   constructor(private parse: ParseService, private router: Router, private route: ActivatedRoute) {
   }
 
-  ngOnChanges()
+  ngOnChanges(sc:SimpleChanges)
   {
     const paramValue = this.route.snapshot.params['page'];
+    
     console.log(paramValue);
     this.selected_nav = paramValue;
   }
 
   ngOnInit() {
+
+
     const paramValue = this.route.snapshot.params['page'];
-    console.log(paramValue);
-    this.selected_nav = paramValue;
+
+      this.selected_nav = paramValue;
+  
+    
+    
+   
+    
     var found = false;
     this.DashnavItems.map((x: any) => {
       if (x.to == paramValue) {
@@ -235,6 +236,7 @@ export class DashHomeComponent {
       });
     }
 
+
     this.parse.getUserRole().then((data: any) => {
       console.log(data);
 
@@ -255,6 +257,13 @@ export class DashHomeComponent {
     this.showSearch = !this.showSearch;
     console.log(this.showSearch);
 
+  }
+
+  select_subPage(to:any)
+  {
+    this.subPage = to;
+    console.log(this.subPage, to);
+    
   }
 
   select_nav_item(title: any, to: any) {

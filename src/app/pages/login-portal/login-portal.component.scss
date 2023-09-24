@@ -121,7 +121,10 @@ main {
               }
             }
           }
-
+          div.error-container {
+            text-align: center;
+            color:tomato;
+          }
           > div.login-btn-holder {
             display: flex;
             flex-direction: row;

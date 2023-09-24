@@ -68,7 +68,7 @@ export class OverlayDailogComponent implements OnInit {
     let i = 1;
     this.productModel.map((x: any) => {
 
-      this.temp_data[x.key] = '';
+      this.temp_data[x.key] = x.value;
       if (x.options != undefined) {
         this.filtered_options[x.key] = {};
         this.filtered_options[x.key] = [...x.options]
@@ -177,7 +177,7 @@ export class OverlayDailogComponent implements OnInit {
     
     this.productModel.map((x: any) => {
 
-      this.temp_data[x.key] = '';
+      this.temp_data[x.key] = x.value;
     });
 
   }
@@ -191,7 +191,10 @@ export class OverlayDailogComponent implements OnInit {
     if(this.prod_images.length>0)
     {
       this.prod_images.map((item:any)=>{
+        if(item.file)
         final.p_images.push(item.file);
+        else
+        final.p_images.push(item)
       })
     }
     if (this.formElement) {
@@ -208,6 +211,19 @@ export class OverlayDailogComponent implements OnInit {
     let finalData = prod;
     console.log(data);
 
+  }
+
+  deleteImage(idx:any)
+  {
+    let verdict = confirm("Delete "+this.prod_images[idx].thumb.split('com/')[1]+"?")
+    if(verdict)
+    {
+      this.prod_images.splice(idx,1);
+    }
+    else 
+    {
+      
+    }
   }
 
 

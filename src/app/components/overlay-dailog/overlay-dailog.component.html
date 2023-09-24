@@ -74,8 +74,25 @@
             </div>
             <div *ngIf="prod_images.length>0" class="images-gallery">
                 
-                <h3>Preview:</h3>
-                <app-gallery-view [allImages]="prod_images"></app-gallery-view>
+                <div class="holder">
+                    <h3>Preview:</h3>
+                    <app-gallery-view [allImages]="prod_images"></app-gallery-view>
+                  </div>
+                  <div *ngIf="prod_images.length>0" class="holder">
+                    <h3>Product Images:</h3>
+                    <div class="p_images-container">
+                      <div [title]="item.thumb.split('com/')[1]" *ngFor="let item of prod_images;let i =index"  class="p_image">
+                        <div class="del-icon-container">
+                          <div (click)="deleteImage(i)" class="del-icon">
+                            x
+                          </div>
+                        </div>
+                        <div [style]="'backgroundImage:url(\''+item.thumb+'\')'" class="image-thumb">
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
         <div class="dialog-footer">

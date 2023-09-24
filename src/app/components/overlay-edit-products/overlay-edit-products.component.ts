@@ -74,10 +74,21 @@ export class OverlayEditProductsComponent {
       }
     });
 
-    // console.log(this.filtered_options);
-    // console.log(this.temp_data);
+    this.temp_data = { ...this.formData };
+    if (this.formData.p_images) {
+      this.prod_images=[];
+      this.prod_images.push(...this.formData.p_images);
+      // console.log(this.prod_images);
+      
+    }
+    else 
+    {
+      this.prod_images=[];
+    }
+
+   
     if (this.formElement) {
-      // console.log("scrolling");
+   
 
       this.formElement.nativeElement.scrollTop = 0;
     }
@@ -91,6 +102,8 @@ export class OverlayEditProductsComponent {
       this.prod_images=[];
       this.prod_images.push(...this.formData.p_images);
       // console.log(this.prod_images);
+      console.log("changes");
+      
       
     }
     else 
@@ -186,11 +199,11 @@ export class OverlayEditProductsComponent {
         for (let i = 0; i < selectedFiles.length; i++) {
           const file = selectedFiles[i];
           // console.log(`Selected file ${i + 1}: ${file.name}`, file);
-          this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file) })
+          this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file), file:file })
           // You can perform further actions with each selected file here
         }
-        this.temp_data.p_images =[...this.prod_images] ;
-       
+        // this.temp_data.p_images =[...this.prod_images] ;
+       console.log(this.prod_images);
         
       }
     }
@@ -205,18 +218,27 @@ export class OverlayEditProductsComponent {
   save_product(p: any = undefined) {
    
     let final = { ...this.temp_data };
-    console.log(final);
-    // final.thumb = "../../../assets/img/thumb-2.jpg";
+   
+    final.p_images = [];
+    this.temp_data.p_images = [];
+    console.log(this.prod_images);
+    
     if(this.prod_images.length>0)
     {
-      final.p_images = [...this.prod_images];
-      final.thumb = this.prod_images[0].thumb;
+      this.prod_images.map((item:any)=>{
+        if(item.file)
+        final.p_images.push(item.file);
+      else
+        final.p_images.push(item);
+      })
     }
     if (this.formElement) {
       this.formElement.nativeElement.scrollTop = 0;
     }
+    console.log(final);
     this.prod_images = [];
     this.editForm();
+    this.progress_percent = 100;
     this.saveTheProduct.emit(final);
 
 
@@ -226,15 +248,26 @@ export class OverlayEditProductsComponent {
   {
     let final = { ...this.temp_data };
     delete final["id"];
-    // final.thumb = "../../../assets/img/thumb-2.jpg";
+    final.p_images = [];
+    this.temp_data.p_images = [];
+    console.log(this.prod_images);
+    
     if(this.prod_images.length>0)
     {
-      final.p_images = [...this.prod_images];
-      final.thumb = this.prod_images[0].thumb;
+      this.prod_images.map((item:any)=>{
+        if(item.file)
+        final.p_images.push(item.file);
+      else
+        final.p_images.push(item);
+      })
     }
-
-    this.prod_images= [];
+    if (this.formElement) {
+      this.formElement.nativeElement.scrollTop = 0;
+    }
+    console.log(final);
+    this.prod_images = [];
     this.editForm();
+    this.progress_percent = 100;
     this.saveAsNewProduct.emit(final);
 
 
@@ -278,8 +311,22 @@ export class OverlayEditProductsComponent {
 
   }
 
+  deleteImage(idx:any)
+  {
+    let verdict = confirm("Delete "+this.prod_images[idx].thumb.split('com/')[1]+"?")
+    if(verdict)
+    {
+      this.prod_images.splice(idx,1);
+    }
+    else 
+    {
+
+    }
+  }
+
   delete_prod()
   {
+    
     let res = confirm("Are you sure?  Delete this product?");
     if(res == true)
     {

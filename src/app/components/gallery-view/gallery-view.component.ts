@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { GalleryRef, GalleryItem, ImageItem, Gallery } from 'ng-gallery';
 
 @Component({
@@ -38,18 +38,18 @@ export class GalleryViewComponent {
     
   }
 
-  ngOnChanges()
+  ngOnChanges(sc:SimpleChanges)
   {
-    // console.log(this.allImages);
+    console.log("gallery",sc["allImages"]);
   
     const galleryRef = this.gallery.ref('preview-gallery');
     galleryRef.reset();
-    this.images = this.allImages.map((item:any)=>{
+    this.images = sc["allImages"]?.currentValue.map((item:any)=>{
      return  new ImageItem({ src: item.src , thumb: item.thumb });
 
-    })
+    });
     galleryRef.load(this.images);
-
+    this.ngOnInit();
     
   }
 

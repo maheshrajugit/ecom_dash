@@ -35,7 +35,9 @@
                             <input type="password" [(ngModel)]="password" name="password" placeholder="Enter password">
                         </div>
                     </div>
-
+                    <div class="error-container">
+                        {{error}}
+                    </div>
                     <div (click)="login()" class="login-btn-holder">
                         <span class="login-btn">
                             Login

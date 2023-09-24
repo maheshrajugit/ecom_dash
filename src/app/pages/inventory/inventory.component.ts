@@ -190,7 +190,7 @@ export class InventoryComponent {
   
   }
 
-  saveProduct(data:any)
+  async saveProduct(data:any)
   {
     let prods = [...this.products];
 
@@ -198,31 +198,69 @@ export class InventoryComponent {
 
     this.products = [...prods];
     console.log(this.products);
+
+    let p_images:any = [];
+    console.log("saving",data);
     
-    this.parse.updateObject('inventory',data).then((data:any)=>{
-      console.log(data);
+    if(data.p_images.length>0)
+    {
+      await Promise.all(data.p_images.map(async(file:any)=>{
+        if(file?.name)
+        {
+          let res = await this.fileUploder.uploadFileToS3(file,'');
+          let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
+          p_images.push({src:res.Location, thumb:res.Location});
+        }
+        else 
+        {
+          p_images.push({src:file.src, thumb:file.thumb});
+        }
+      }));
+
+      data.p_images = [...p_images];
+      data.thumb = p_images[0].thumb;
+      await this.parse.saveObject('inventory',data);
       this.getAllProducts();
-    }).catch((err:any)=>{
-      console.log(err);
-      
-    });
+    }
 
     this.isEditProductOpen =false;
     
   }
 
-  saveAsNew(dataObj:any)
+  async saveAsNew(data:any)
   {
-    this.parse.saveObject('inventory',dataObj).then((data:any)=>{
-      console.log("new added",data);
-      
-    }).catch((err:any)=>{
-      console.log(err);
-      
-    });
+    let prods = [...this.products];
+
+    prods[this.editProdIndex] = {...data};
+
+    this.products = [...prods];
+    console.log(this.products);
+
+    let p_images:any = [];
+    console.log("saving",data);
+    
+    if(data.p_images.length>0)
+    {
+      await Promise.all(data.p_images.map(async(file:any)=>{
+        if(file?.name)
+        {
+          let res = await this.fileUploder.uploadFileToS3(file,'');
+          let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
+          p_images.push({src:res.Location, thumb:res.Location});
+        }
+        else 
+        {
+          p_images.push({src:file.src, thumb:file.thumb});
+        }
+      }));
+
+      data.p_images = [...p_images];
+      data.thumb = p_images[0].thumb;
+      await this.parse.saveObject('inventory',data);
+      this.getAllProducts();
+    }
 
     this.isEditProductOpen =false;
-    this.getAllProducts();
   }
 
  

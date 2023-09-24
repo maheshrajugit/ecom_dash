@@ -10,7 +10,7 @@ import { ParseService } from 'src/app/services/parse.service';
 export class LoginPortalComponent {
   public username:any;
   public password:any;
-
+  public error:any='';
   constructor(private router:Router, private parse:ParseService)
   {
 
@@ -32,7 +32,7 @@ export class LoginPortalComponent {
       
     }).catch((err:any)=>{
       console.log(err);
-      
+      this.error = err
     });
     
   }

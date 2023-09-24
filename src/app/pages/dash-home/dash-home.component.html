@@ -52,7 +52,7 @@
                 : 'child-nav-holder'
             "
           >
-            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+            <div (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage!=child.to?'child-nav-tile':'child-nav-tile active'">
               {{ child.title }}
             </div>
           </div>
@@ -104,7 +104,7 @@
                 : 'child-nav-holder'
             "
           >
-            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+            <div  (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage!=child.to?'child-nav-tile':'child-nav-tile active'">
               {{ child.title }}
             </div>
           </div>
@@ -155,7 +155,7 @@
                 : 'child-nav-holder'
             "
           >
-            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+            <div  (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage!=child.to?'child-nav-tile':'child-nav-tile active'">
               {{ child.title }}
             </div>
           </div>
@@ -206,7 +206,7 @@
                 : 'child-nav-holder'
             "
           >
-            <div *ngFor="let child of nav.childs" class="child-nav-tile">
+            <div  (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage!=child.to?'child-nav-tile':'child-nav-tile active'">
               {{ child.title }}
             </div>
           </div>
@@ -226,7 +226,7 @@
 
       <div class="header-items-container">
         <div class="page-title">
-          <h3>Dashboard / Overview</h3>
+          <h3>Dashboard / {{selected_nav}}</h3>
         </div>
         <div class="top-nav-items">
           <div
