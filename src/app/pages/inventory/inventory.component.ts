@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { FileUploadService } from 'src/app/services/aws/file-upload.service';
 import { ParseService } from 'src/app/services/parse.service';
 
 @Component({
@@ -126,7 +127,7 @@ export class InventoryComponent {
   public pageSize: any = 10;
   public pageSizeOptions: any = [5, 10, 25, 100];
 
-  constructor(private parse:ParseService) {
+  constructor(private parse:ParseService, private fileUploder:FileUploadService) {
     // this.products.push(this.productModel);
     this.allProducts = [...this.products];
     this.length = this.allProducts.length;
@@ -158,7 +159,7 @@ export class InventoryComponent {
     this.isEditProductOpen = 'true';
   }
 
-  addProduct(prod: any) {
+  async addProduct(prod: any) {
 
     // console.log(prod);
     let products = [...this.products]
@@ -167,16 +168,24 @@ export class InventoryComponent {
     this.allProducts = [...products];
     this.length = this.products.length;
     console.log(products, this.products);
+    let p_images:any = [];
+    
+    if(prod.p_images.length>0)
+    {
+      await Promise.all(prod.p_images.map(async(file:any)=>{
+        let res = await this.fileUploder.uploadFileToS3(file,'');
+        let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
+        p_images.push({src:res.Location, thumb:res.Location});
+      }));
 
-    this.parse.saveObject('inventory',prod).then((data:any)=>{
-      console.log(data);
-      
-    }).catch((err:any)=>{
-      console.log(err);
-      
-    });
+      prod.p_images = [...p_images];
+      prod.thumb = p_images[0].thumb;
+      await this.parse.saveObject('inventory',prod)
+      this.closeDialog('false');
+    }
+    
 
-    this.closeDialog('false');
+   
   
   
   }

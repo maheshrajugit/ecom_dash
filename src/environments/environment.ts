@@ -17,9 +17,11 @@ export const environment = {
     restApiKey:"zgnrCnpI1F7Zl2wpS7B7utR33cdXgR9FjZXkMukNDu7rvhuC"
   },
 
-  authClientKey: "zgnrCnpI1F7Zl2wpS7B7utR33cdXgR9FjZXkMukNDu7rvhuC",
+
   localSecretkey: "DGUxgvwEQh1WVlOf9I4AW5bB",
   razorpayKey: "rzp_test_sH527FKMJtvkCB",
-  mojoApiKey: "test-03777074-fd01-4622-a0d6-e047773840ca"
-
+  mojoApiKey: "test-03777074-fd01-4622-a0d6-e047773840ca",
+  AWS_accessKeyId: 'AKIAWS4G23Q7LMBPSDS4',
+  AWS_secretAccessKey: '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',
+  region: 'ap-south-1'
 };

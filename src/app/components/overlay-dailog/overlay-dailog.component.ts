@@ -152,12 +152,13 @@ export class OverlayDailogComponent implements OnInit {
       const selectedFile = inputElement.files[0];
       if (selectedFile) {
         const selectedFiles = inputElement.files;
-
+        
         for (let i = 0; i < selectedFiles.length; i++) {
           const file = selectedFiles[i];
           // console.log(`Selected file ${i + 1}: ${file.name}`, file);
-          this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file) })
-          this.temp_data.thumb = URL.createObjectURL(file);
+          this.prod_images.push({ src: URL.createObjectURL(file), thumb: URL.createObjectURL(file), file:file })
+        
+          
           // You can perform further actions with each selected file here
         }
       }
@@ -173,6 +174,7 @@ export class OverlayDailogComponent implements OnInit {
   resetForm() {
 
     this.prod_images = [];
+    
     this.productModel.map((x: any) => {
 
       this.temp_data[x.key] = '';
@@ -184,24 +186,21 @@ export class OverlayDailogComponent implements OnInit {
   
  
     let final = { ...this.temp_data };
-    // console.log(final);
-    // final.thumb = "../../../assets/img/thumb-2.jpg";
+    final.p_images = [];
+    this.temp_data.p_images = [];
     if(this.prod_images.length>0)
     {
-      final.p_images = [...this.prod_images];
-      final.thumb = this.prod_images[0].thumb;
+      this.prod_images.map((item:any)=>{
+        final.p_images.push(item.file);
+      })
     }
     if (this.formElement) {
-
-      
-
       this.formElement.nativeElement.scrollTop = 0;
     }
+    console.log(final);
 
     this.addTheProduct.emit(final);
-    this.prod_images = []
-
-
+    this.prod_images = [];
   }
 
   formatData(data: any) {
