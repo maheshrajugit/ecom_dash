@@ -155,7 +155,7 @@
                 : 'child-nav-holder'
             "
           >
-            <div  (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage!=child.to?'child-nav-tile':'child-nav-tile active'">
+            <div  (click)="select_subPage(child.to)" *ngFor="let child of nav.childs" [ngClass]="subPage==child.to?'child-nav-tile active':'child-nav-tile'">
               {{ child.title }}
             </div>
           </div>
@@ -296,7 +296,7 @@
 
         <!-- ========Users ========== -->
         <section *ngIf="selected_nav == 'Inventory Management'" class="overview-main">
-          <app-inventory></app-inventory>
+          <app-inventory [subpage]="subPage"></app-inventory>
         </section>
       </main>
     </div>

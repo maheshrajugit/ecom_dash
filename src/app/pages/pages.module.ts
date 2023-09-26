@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
 import { InventoryComponent } from './inventory/inventory.component';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 @NgModule({
   declarations: [
     LoginPortalComponent,
@@ -34,6 +35,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     ManageWebsiteComponent,
     ManageUsersComponent,
     InventoryComponent,
+    ManageCategoriesComponent,
     
   ],
   imports: [

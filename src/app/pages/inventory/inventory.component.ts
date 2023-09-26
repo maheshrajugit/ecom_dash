@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { FileUploadService } from 'src/app/services/aws/file-upload.service';
 import { ParseService } from 'src/app/services/parse.service';
@@ -11,6 +11,8 @@ import { ParseService } from 'src/app/services/parse.service';
 
 })
 export class InventoryComponent {
+
+  @Input() subpage: any='';
 
   public value = 'clear me';
 

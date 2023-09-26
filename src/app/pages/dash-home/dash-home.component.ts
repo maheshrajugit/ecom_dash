@@ -14,6 +14,7 @@ export class DashHomeComponent {
 
   public selected_nav: any = 'dashboard';
   public subPage:any = '';
+  public page:any = '';
   public DashnavItems: any = [
     {
       icon: '../assets/home-icon',
@@ -26,7 +27,7 @@ export class DashHomeComponent {
       to: 'sitemanagement',
       childs: [
 
-        { title: "Pages", to: "" },
+        { title: "Pages", to: null },
         { title: "banner ads", to: "banners" },
         { title: "shopping categories", to: "categories" },
         { title: "collections", to: "collections" },
@@ -38,7 +39,7 @@ export class DashHomeComponent {
       title: "manage users",
       to: 'users',
       childs: [
-        { title: "Customers", to: "" },
+        { title: "Customers", to: null },
         { title: "Staff", to: "staff" }
       ]
     },
@@ -52,8 +53,8 @@ export class DashHomeComponent {
 
       childs: [
 
-        { title: "All Products", to: "" },
-        { title: "Product varients", to: "groups" },
+        { title: "All Products", to: null },
+        { title: "Product categories", to: "categories" },
         { title: "Product Specs", to: "specs" },
         { title: "Warehouses", to: "warehouses" },
         { title: "Special sales", to: "special" },
@@ -182,21 +183,27 @@ export class DashHomeComponent {
 
   ngOnChanges(sc:SimpleChanges)
   {
-    const paramValue = this.route.snapshot.params['page'];
     
-    console.log(paramValue);
-    this.selected_nav = paramValue;
+    // this.route.paramMap.subscribe((params) => {
+    //   this.selected_nav = params.get('page');;
+    //   this.subPage = params.get('subpage');
+    //   // Do something with page and subpage
+    // });
   }
 
   ngOnInit() {
 
-
-    const paramValue = this.route.snapshot.params['page'];
-
-      this.selected_nav = paramValue;
-  
+    var paramValue:any ;
+      this.route.paramMap.subscribe((params) => {
+        paramValue = params.get('page');
+        this.page = params.get('page');
+        this.subPage = params.get('subpage');
+        // Do something with page and subpage
+        console.log(paramValue,this.subPage);
+        
+      });
     
-    
+
    
     
     var found = false;
@@ -261,7 +268,10 @@ export class DashHomeComponent {
 
   select_subPage(to:any)
   {
-    this.subPage = to;
+    if(to!=null)
+    this.router.navigate(['/dashboard',this.page,to]);
+    else 
+    this.router.navigate(['/dashboard',this.page]);
     console.log(this.subPage, to);
     
   }
@@ -269,7 +279,7 @@ export class DashHomeComponent {
   select_nav_item(title: any, to: any) {
     this.selected_nav = title;
     
-    if (this.selected_nav == 'Logout') {
+    if (title == 'Logout') {
       this.logout();
     }
     else {

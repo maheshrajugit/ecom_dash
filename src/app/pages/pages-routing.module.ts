@@ -12,9 +12,11 @@ const routes: Routes = [
     component: DashHomeComponent,
     children: [
       { path: 'home', component: DashHomeComponent  },
-      
     ]
-
+  },
+  {
+    path: 'dashboard/:page/:subpage',
+    component: DashHomeComponent,
   }
 
 ];

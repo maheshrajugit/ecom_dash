@@ -1,0 +1,223 @@
+<div class="all-categories-main">
+
+    <div (click)="detectcloseEditForm($event)" *ngIf="isEditorOpen" class="overlay-container">
+        <div class="dailog-box">
+            <div class="dialog-head">
+                <h4>Add {{open_cat_name}}</h4>
+            </div>
+            <div class="dialog-body">
+                <div class="cat-holder">
+                    <div class="cat-name-input">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Category name</mat-label>
+                            <input placeholder="Enter category name" [(ngModel)]="edit_temp.name" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="cat-avatar-input">
+                        <div class="left">
+                            <span class="icon">
+                                <img src="../../../assets/add-image-icon.svg" alt="">
+                            </span>
+                            <span>+ Upload Image</span>
+                        </div>
+                        <div class="right">
+                            <div class="avatar-holder">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-cat-list">
+                    <div *ngFor="let x of edit_temp.subgroup;let i=index;" class="list-item">
+                        <div class="left">
+                            <div class="sub-cat">{{x}}</div>
+                        </div>
+                        <div class="right">
+                            <div (click)="deleteSubCat(i)" class="del-icon">
+                                <img src="../../../assets/delete-icon.svg" alt="delete">
+                            </div>
+                      
+                        </div>
+                    </div>
+                    <div *ngIf="add_sub_cat" class="list-item edit-input">
+                        <div class="left">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Sub category</mat-label>
+                                <input [(ngModel)]="i_sub_cat" placeholder="Enter sub category" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div class="right">
+                            <div (click)="saveSubCat()" class="done-icon">
+                                <img src="../../../assets/tick-icon.svg" alt="tick">
+                            </div>
+                      
+                        </div>
+                    </div>
+                </div>
+                <div  (click)="addSubCat()" class="add-subcat-btn">
+                    <div class="icon">
+                        <img src="../../../assets/add-plus-icon-dark.svg" alt="+">
+                    </div>
+                    <div class="btn">
+                        Add Sub Category
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <div  class="left">
+                    <span (click)="deleteCategory()" *ngIf="this.edit_category_index!=null">Delete</span>
+                </div>
+                <div class="right">
+                    <span (click)="closeEditForm($event)">Cancel</span>
+                    <span (click)="saveEditForm()">Save</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div  class="occasions-list-card">
+        <div class="card-head">
+            <h3>{{occasions.cat_name}}</h3>
+        </div>
+        <div class="card-list-container">
+            <div *ngFor="let c of occasions.all; let j=index;" class="card-list">
+                <div  class="card-list-title">
+                    <div (click)="openContent(occasions.cat_name,j)" class="left">
+                        <div class="card-avatar">
+                            <div class="img-holder">
+    
+                            </div>
+                        </div>
+                        <div class="title">
+                            {{c.name}}
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div (click)="editCategory(occasions.cat_name,j)" class="icon">
+                            <img src="../../../assets/edit-icon.svg" alt="edit">
+                        </div>
+                    </div>
+    
+                </div>
+                <div [ngClass]="open_content_index == j && open_cat_name == occasions.cat_name?'card-list-content active':'card-list-content'">
+                    <div *ngIf="c.subgroup.length>0" class="sub-category-chips">
+                        <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
+                            {{sg}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-footer">
+            <div class="add-btn">
+                <div class="icon">
+                    <img src="../../../assets/add-plus-icon-dark.svg" alt="+">
+                </div>
+                <div (click)="openEditForm(occasions.cat_name)" class="btn-title">
+                    Add New {{occasions.cat_name}}
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div  class="occasions-list-card">
+        <div class="card-head">
+            <h3>{{regional_collections.cat_name}}</h3>
+        </div>
+        <div class="card-list-container">
+            <div *ngFor="let c of regional_collections.all; let j=index;" class="card-list">
+                <div  class="card-list-title">
+                    <div (click)="openContent(regional_collections.cat_name,j)" class="left">
+                        <div class="card-avatar">
+                            <div class="img-holder">
+    
+                            </div>
+                        </div>
+                        <div class="title">
+                            {{c.name}}
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div (click)="editCategory(regional_collections.cat_name,j)" class="icon">
+                            <img src="../../../assets/edit-icon.svg" alt="edit">
+                        </div>
+                    </div>
+    
+                </div>
+                <div [ngClass]="open_content_index == j && open_cat_name == regional_collections.cat_name?'card-list-content active':'card-list-content'">
+                    <div  *ngIf="c.subgroup.length>0" class="sub-category-chips">
+                        <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
+                            {{sg}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-footer">
+            <div class="add-btn">
+                <div class="icon">
+                    <img src="../../../assets/add-plus-icon-dark.svg" alt="+">
+                </div>
+                <div (click)="openEditForm(regional_collections.cat_name)" class="btn-title">
+                    Add New {{regional_collections.cat_name}}
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div  class="occasions-list-card">
+        <div class="card-head">
+            <h3>{{groups.cat_name}}</h3>
+        </div>
+        <div class="card-list-container">
+            <div *ngFor="let c of groups.all; let j=index;" class="card-list">
+                <div  class="card-list-title">
+                    <div (click)="openContent(groups.cat_name,j)" class="left">
+                        <div class="card-avatar">
+                            <div class="img-holder">
+    
+                            </div>
+                        </div>
+                        <div class="title">
+                            {{c.name}}
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div (click)="editCategory(groups.cat_name,j)" class="icon">
+                            <img src="../../../assets/edit-icon.svg" alt="edit">
+                        </div>
+                    </div>
+    
+                </div>
+                <div *ngIf="c.subgroup.length>0" [ngClass]="open_content_index == j && open_cat_name == groups.cat_name?'card-list-content active':'card-list-content'">
+                    <div  class="sub-category-chips">
+                        <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
+                            {{sg}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-footer">
+            <div class="add-btn">
+                <div class="icon">
+                    <img src="../../../assets/add-plus-icon-dark.svg" alt="+">
+                </div>
+                <div (click)="openEditForm(groups.cat_name)" class="btn-title">
+                    Add New {{groups.cat_name}}
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="group-list-card">
+
+    </div>
+</div>
