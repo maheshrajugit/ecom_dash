@@ -23,25 +23,45 @@ async saveObject(className:any,dataObj:any)
   return await classname.save(dataObj);
 }
 
-async updateObject(className:any,dataObj:any)
+async updateObject(className:any,dataObj:any,id:any=null)
 {
+  console.log(className,dataObj,id);
+  
   const Classname = Parse.Object.extend(className);
   const classname = new Classname();
-
+  let obj:any
   const query = new Parse.Query(Classname);
-  let obj = await query.get(dataObj.id)
+  if(id==null)
+  {
+    try
+    {
+      obj = await query.get(dataObj.id);
+    }
+    catch
+    {
+      return await classname.save(dataObj);
+    }
+    
+  }
+  else 
+  obj = await query.get(id);
   return await obj.save(dataObj);
 
   
 }
 
-async deleteObject(className:any,dataObj:any)
+async deleteObject(className:any,dataObj:any,id:any=null)
 {
+  console.log(className,dataObj,id);
   const Classname = Parse.Object.extend(className);
   const classname = new Classname();
 
   const query = new Parse.Query(Classname);
-  let obj = await query.get(dataObj.id)
+  let obj;
+  if(id==null)
+  obj= await query.get(dataObj.id);
+  else
+  obj = await query.get(id);
   return await obj.destroy();
 }
 
@@ -51,8 +71,19 @@ async getData(className:any,limit:any=50)
   const query = new Parse.Query(Classname);
   query.limit(limit);
   query.descending("updatedAt");
+  query.includeAll();
   return await query.find();
 
+
+}
+
+async countObjects(className:any)
+{
+  const Classname = Parse.Object.extend(className);
+  const query = new Parse.Query(Classname);
+  query.find();
+  const count = await query.count();
+  return count;
 }
 
 

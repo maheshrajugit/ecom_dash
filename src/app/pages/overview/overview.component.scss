@@ -228,7 +228,8 @@ div.overview-main {
     }
 
     > div.col-2-container {
-      min-width: 60%;
+      min-width: 57%;
+      max-width: 6%;
       //   flex-grow: 1;
       //   border: 1px solid rgba(0, 0, 0, 0.3);
       background-color: #fff;
@@ -284,7 +285,8 @@ div.overview-main {
     }
 
     > div.col-1-container {
-      min-width: 33%;
+      min-width: 30%;
+      max-width:33%;
       flex-grow: 1;
       //   border: 1px solid rgba(0, 0, 0, 0.3);
       background-color: #fff;
@@ -333,6 +335,17 @@ div.overview-main {
         }
       }
 
+     
+    }
+
+    > div.col-3-container {
+   
+      max-width:100%;
+      flex-grow: 1;
+      //   border: 1px solid rgba(0, 0, 0, 0.3);
+      background-color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    
       div.quick-overview-cards {
         display: flex;
         flex-direction: row;
@@ -405,6 +418,8 @@ div.overview-main {
         }
       }
     }
+
+
   }
 }
 

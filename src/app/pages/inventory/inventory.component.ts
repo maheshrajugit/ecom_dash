@@ -18,20 +18,22 @@ export class InventoryComponent {
 
   public inventoryOverviewCards: any = [
     {
+      to:"categories",
       color: "#1570EF",
       title: "Categories",
       icon: "../../../assets/categories-icon.svg",
       info: [
-        { value: 14, type: "Total" }
+        { value: 14, type: "Total" },
+        { value: 14, type: "Sub groups" }
       ]
     },
     {
+      to:"",
       color: "#F7931E",
       title: "Total Products",
       icon: "../../../assets/quick-inventory.svg",
       info: [
-        { value: 868, type: "This week" },
-        { value: "₹" + 250000, type: "Revenue" },
+        { value: 868, type: "Total" }
       ]
     },
     {
@@ -129,7 +131,7 @@ export class InventoryComponent {
   public pageSize: any = 10;
   public pageSizeOptions: any = [5, 10, 25, 100];
 
-  constructor(private parse:ParseService, private fileUploder:FileUploadService) {
+  constructor(private parse:ParseService, private fileUploader:FileUploadService) {
     // this.products.push(this.productModel);
     this.allProducts = [...this.products];
     this.length = this.allProducts.length;
@@ -169,17 +171,17 @@ export class InventoryComponent {
     this.products = [...products];
     this.allProducts = [...products];
     this.length = this.products.length;
-    console.log(products, this.products);
+    
     let p_images:any = [];
     
     if(prod.p_images.length>0)
     {
       await Promise.all(prod.p_images.map(async(file:any)=>{
-        let res = await this.fileUploder.uploadFileToS3(file,'');
+        let res = await this.fileUploader.uploadFileToS3(file,'');
         let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
         p_images.push({src:res.Location, thumb:res.Location});
       }));
-
+      console.log(products, this.products);
       prod.p_images = [...p_images];
       prod.thumb = p_images[0].thumb;
       await this.parse.saveObject('inventory',prod)
@@ -209,7 +211,7 @@ export class InventoryComponent {
       await Promise.all(data.p_images.map(async(file:any)=>{
         if(file?.name)
         {
-          let res = await this.fileUploder.uploadFileToS3(file,'');
+          let res = await this.fileUploader.uploadFileToS3(file,'');
           let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
           p_images.push({src:res.Location, thumb:res.Location});
         }
@@ -221,6 +223,12 @@ export class InventoryComponent {
 
       data.p_images = [...p_images];
       data.thumb = p_images[0].thumb;
+
+      data.stock = parseInt(data.stock);
+      data.discount = parseInt(data.discount);
+      data.price = parseInt(data.price);
+      data.b_price = parseInt(data.b_price);
+      
       await this.parse.saveObject('inventory',data);
       this.getAllProducts();
     }
@@ -246,7 +254,7 @@ export class InventoryComponent {
       await Promise.all(data.p_images.map(async(file:any)=>{
         if(file?.name)
         {
-          let res = await this.fileUploder.uploadFileToS3(file,'');
+          let res = await this.fileUploader.uploadFileToS3(file,'');
           let data: any = { name: file.name, type: file.type.split('/')[0], url: res.Location, key: res.Key };
           p_images.push({src:res.Location, thumb:res.Location});
         }
@@ -315,8 +323,24 @@ export class InventoryComponent {
     this.tempProductModel = [...this.fullProductModel];
 
     this.getAllProducts();
+
+    this.get_Inventory_overview();
     
 
+  }
+
+  async get_Inventory_overview()
+  {
+    let g:number  = await this.parse.countObjects('groups');
+    let o:number = await this.parse.countObjects('occasions');
+    let c:number = await this.parse.countObjects('collections');
+    let sg:number = await this.parse.countObjects('sub_groups');
+    let p:number = await this.parse.countObjects('inventory');
+    console.log("goc",g,o,c);
+    
+    this.inventoryOverviewCards[0].info[0].value = o + c + g;
+    this.inventoryOverviewCards[0].info[1].value = sg;
+    this.inventoryOverviewCards[1].info[0].value = p;
   }
 
   getAllProducts()

@@ -1,8 +1,5 @@
-
-
 ::-webkit-scrollbar {
   width: 4px; /* Adjust the width as needed */
-  
 }
 
 ::-webkit-scrollbar-track {
@@ -11,15 +8,13 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #c599ff; /* Change the thumb color on hover */
+  background-color: #c599ff; /* Change the thumb color on hover */
 }
 
 ::-webkit-scrollbar-thumb {
-   /* Change the track color */
+  /* Change the track color */
   background-color: #dabeff;
 }
-
-
 
 div.all-categories-main {
   display: flex;
@@ -40,7 +35,7 @@ div.all-categories-main {
     background-color: rgba(24, 6, 48, 0.6);
     justify-content: center;
     align-items: center;
-    
+
     > div.dailog-box {
       background-color: #fff;
       padding: 1rem;
@@ -48,7 +43,7 @@ div.all-categories-main {
       box-shadow: 0px 3px 6px rgba(24, 6, 48, 0.9);
       display: flex;
       flex-direction: column;
-      max-height:85vh;
+      max-height: 85vh;
       overflow-y: auto;
 
       > div.dialog-head {
@@ -62,9 +57,8 @@ div.all-categories-main {
         }
       }
       > div.dialog-body {
-        
         overflow-y: scroll;
-        padding: 0 1rem ;
+        padding: 0 1rem;
         > div.cat-holder {
           display: flex;
           flex-direction: column;
@@ -74,6 +68,9 @@ div.all-categories-main {
             }
           }
           div.cat-avatar-input {
+            input {
+              display: none;
+            }
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -105,13 +102,34 @@ div.all-categories-main {
             > div.right {
               display: flex;
               flex-direction: column;
-              justify-content: center;
-              align-items: center;
+              justify-content: flex-end;
+              align-items: flex-end;
+
+              > div.del-icon {
+                cursor: pointer;
+                position: absolute;
+                width:1.25rem;
+                height: 1.25rem;
+                border-radius: 50%;
+                background-color: tomato;
+                color:white;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                > div.icon {
+
+                }
+              }
+
               > div.avatar-holder {
                 width: 3.5rem;
                 height: 3.5rem;
                 border-radius: 50%;
                 background-color: #58595b;
+                background-image: "../../../assets/ques_mark.gif";
+                background-size: cover;
+                background-repeat: no-repeat;
               }
             }
           }
@@ -179,24 +197,24 @@ div.all-categories-main {
         }
 
         > div.add-subcat-btn {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            font-family: 'Sen',sans-serif;
-            padding:.5rem;
-            cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          font-family: "Sen", sans-serif;
+          padding: 0.5rem;
+          cursor: pointer;
           > div.icon {
             display: flex;
             align-items: center;
             justify-content: center;
             > img {
-                width: 1.5rem;
-                height: 1.5rem;
+              width: 1.5rem;
+              height: 1.5rem;
             }
           }
           > div.btn {
-            color:#180360;
+            color: #180360;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -204,9 +222,8 @@ div.all-categories-main {
           }
         }
 
-        > div.add-subcat-btn:hover
-        {
-            background-color: #dfdfdf;
+        > div.add-subcat-btn:hover {
+          background-color: #dfdfdf;
         }
       }
       > div.dialog-footer {
@@ -309,6 +326,8 @@ div.all-categories-main {
                 height: 3rem;
                 border-radius: 50%;
                 background-color: #180630;
+                background-size: cover;
+                background-repeat: no-repeat;
               }
             }
             > div.title {

@@ -28,6 +28,7 @@
 
       <div *ngIf="!isFilterSelected" class="overview-cards-container">
         <div
+          [routerLink]="['/dashboard/inventory', card.to]"
           [style]="
             'background:linear-gradient(270deg,' +
             card.color +

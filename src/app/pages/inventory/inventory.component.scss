@@ -43,6 +43,7 @@ div.inventory-main {
 
       justify-content: space-between;
       > div.overview-card {
+        cursor: pointer;
         flex-grow: 1;
         display: flex;
         flex-direction: column;

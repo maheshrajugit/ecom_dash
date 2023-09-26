@@ -14,15 +14,21 @@
                         </mat-form-field>
                     </div>
                     <div class="cat-avatar-input">
-                        <div class="left">
+                        <input type="file" (change)="fileSelected($event)" #fileInput name="file" value="Add Images" id="">
+                        <div  (click)="triggerFileInput()" class="left">
                             <span class="icon">
                                 <img src="../../../assets/add-image-icon.svg" alt="">
                             </span>
                             <span>+ Upload Image</span>
                         </div>
                         <div class="right">
-                            <div class="avatar-holder">
-
+                            <div (click)="deleteAvatar()" *ngIf="edit_temp.avatar!=''" class="del-icon">
+                                <div class="icon">
+                                    x
+                                </div>
+                            </div>
+                            <div [style]="edit_temp.avatar!=''?'backgroundImage:url(\''+edit_temp.avatar+'\')':'backgroundImage:url(\'../../../assets/ques_mark.gif\')'" class="avatar-holder">
+                                
                             </div>
                         </div>
                     </div>
@@ -30,7 +36,7 @@
                 <div class="sub-cat-list">
                     <div *ngFor="let x of edit_temp.subgroup;let i=index;" class="list-item">
                         <div class="left">
-                            <div class="sub-cat">{{x}}</div>
+                            <div class="sub-cat" [innerHTML]="x?.attributes?.name"></div>
                         </div>
                         <div class="right">
                             <div (click)="deleteSubCat(i)" class="del-icon">
@@ -85,7 +91,7 @@
                 <div  class="card-list-title">
                     <div (click)="openContent(occasions.cat_name,j)" class="left">
                         <div class="card-avatar">
-                            <div class="img-holder">
+                            <div [style]="'backgroundImage:url(\''+c.avatar+'\')'" class="img-holder">
     
                             </div>
                         </div>
@@ -103,7 +109,7 @@
                 <div [ngClass]="open_content_index == j && open_cat_name == occasions.cat_name?'card-list-content active':'card-list-content'">
                     <div *ngIf="c.subgroup.length>0" class="sub-category-chips">
                         <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
-                            {{sg}}
+                            {{sg?.attributes?.name}}
                         </div>
                     </div>
                 </div>
@@ -131,8 +137,8 @@
             <div *ngFor="let c of regional_collections.all; let j=index;" class="card-list">
                 <div  class="card-list-title">
                     <div (click)="openContent(regional_collections.cat_name,j)" class="left">
-                        <div class="card-avatar">
-                            <div class="img-holder">
+                        <div  class="card-avatar">
+                            <div [style]="'backgroundImage:url(\''+c.avatar+'\')'"  class="img-holder">
     
                             </div>
                         </div>
@@ -150,7 +156,7 @@
                 <div [ngClass]="open_content_index == j && open_cat_name == regional_collections.cat_name?'card-list-content active':'card-list-content'">
                     <div  *ngIf="c.subgroup.length>0" class="sub-category-chips">
                         <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
-                            {{sg}}
+                            {{sg?.attributes?.name}}
                         </div>
                     </div>
                 </div>
@@ -179,7 +185,7 @@
                 <div  class="card-list-title">
                     <div (click)="openContent(groups.cat_name,j)" class="left">
                         <div class="card-avatar">
-                            <div class="img-holder">
+                            <div [style]="'backgroundImage:url(\''+c.avatar+'\')'"  class="img-holder">
     
                             </div>
                         </div>
@@ -197,7 +203,7 @@
                 <div *ngIf="c.subgroup.length>0" [ngClass]="open_content_index == j && open_cat_name == groups.cat_name?'card-list-content active':'card-list-content'">
                     <div  class="sub-category-chips">
                         <div *ngFor="let sg of c.subgroup" class="sub-category-chip">
-                            {{sg}}
+                            {{sg?.attributes?.name}}
                         </div>
                     </div>
                 </div>
