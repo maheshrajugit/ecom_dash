@@ -8,6 +8,7 @@ import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 export class LineGraphComponent {
 
   title = 'ng2-charts-demo';
+  public innerWidth:any;
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [
@@ -69,7 +70,7 @@ export class LineGraphComponent {
 
   ngOnInit()
   {
-    
+    this.innerWidth = window.innerWidth;
   }
 
 

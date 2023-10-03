@@ -11,7 +11,7 @@ import { ParseService } from 'src/app/services/parse.service';
 export class DashHomeComponent {
 
   panelOpenState = false;
-
+  public window_width:any;
   public selected_nav: any = 'dashboard';
   public subPage:any = '';
   public page:any = '';
@@ -193,6 +193,11 @@ export class DashHomeComponent {
 
   ngOnInit() {
 
+
+
+    this.window_width = window.innerWidth;
+    console.log(this.window_width);
+    
     var paramValue:any ;
       this.route.paramMap.subscribe((params) => {
         paramValue = params.get('page');

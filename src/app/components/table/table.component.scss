@@ -1,4 +1,6 @@
 div.table-container {
+   width:100%;
+ 
   > div.table-main {
     padding: 1.25rem;
     display: flex;
@@ -39,6 +41,7 @@ div.table-container {
 
     div.table-body {
       width: 100%;
+      overflow-x: auto;
       box-sizing: border-box;
       > table {
         width: 100%;

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ManageUsersComponent {
 
-
+  public basic_user_keys:any = ["f_name"]
   public users:any = [
     {
       id:"DF3245FG",

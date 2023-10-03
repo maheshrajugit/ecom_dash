@@ -1,5 +1,5 @@
 <mat-drawer-container class="dashboard-container" autosize>
-  <mat-drawer #drawer class="dashboard-sidenav" opened="true" mode="side">
+  <mat-drawer  [mode]="window_width<772?'over':'side'" #drawer class="dashboard-sidenav" opened="true" mode="side">
     <div class="side-nav-container">
       <div class="top-header">
         <div class="logo-container">

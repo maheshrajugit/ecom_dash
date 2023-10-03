@@ -1,5 +1,5 @@
 <div class="chart-container">
-      <canvas baseChart width="550" height="300"
+      <canvas baseChart [width]="innerWidth>772?500:300" [height]="innerWidth>772?300:250"
     [type]="'line'"
     [data]="lineChartData"
     [options]="lineChartOptions"
